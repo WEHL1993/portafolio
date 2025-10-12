@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "certificates": "Certificados",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "name": "Wilson Hernández",
+    "role": "Desarrollador Web Front-end"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "prompt": "C: portafolio/wilson-hernandez",
+    "description": "¡Hola! Soy un apasionado desarrollador front-end con experiencia en crear experiencias web modernas y atractivas. Mi pasión va más allá del código: soy fanático del A.C. Milan, disfruto de la actuación y la música. Me encanta combinar creatividad con tecnología para crear soluciones digitales únicas."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "items": [
+      {
+        "title": "MiViaje.com",
+        "description": "Clon de Airbnb desarrollado con tecnologías modernas",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
+      },
+      {
+        "title": "Cafe Milanello",
+        "description": "Sitio web para cafetería con diseño elegante",
+        "technologies": ["HTML5", "CSS3", "Sass", "JavaScript"]
+      },
+      {
+        "title": "Blog Personal",
+        "description": "Blog personal con sistema de gestión de contenido",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
+      },
+      {
+        "title": "Virtual Shop",
+        "description": "Tienda virtual con galería de productos",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Sass"]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades Tecnológicas",
+    "items": [
+      {
+        "name": "HTML5",
+        "description": "Lenguaje de marcado para crear la estructura de páginas web. HTML5 incluye nuevos elementos semánticos, APIs y mejores capacidades multimedia."
+      },
+      {
+        "name": "CSS3",
+        "description": "Hojas de estilo en cascada para el diseño y presentación de páginas web. CSS3 incluye animaciones, transiciones y diseño responsivo."
+      },
+      {
+        "name": "JavaScript",
+        "description": "Lenguaje de programación que añade interactividad y dinamismo a las páginas web. Permite crear experiencias de usuario ricas e interactivas."
+      },
+      {
+        "name": "Bootstrap",
+        "description": "Framework de CSS que facilita el desarrollo de interfaces responsivas y modernas con componentes prediseñados y sistema de grillas."
+      },
+      {
+        "name": "Sass",
+        "description": "Preprocesador de CSS que añade características como variables, mixins y funciones para escribir CSS más eficiente y mantenible."
+      },
+      {
+        "name": "WordPress",
+        "description": "Sistema de gestión de contenidos (CMS) que permite crear y administrar sitios web de manera sencilla y flexible."
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certificados",
+    "items": [
+      "HTML Certificate - SoloLearn",
+      "CSS Certificate - SoloLearn", 
+      "JavaScript Certificate - SoloLearn",
+      "Programación Básica - Platzi",
+      "Desarrollo Web 1 - Google & IEI",
+      "Desarrollo Web 2 - Google & IEI"
+    ]
+  },
+  "footer": {
+    "copyright": "© 2025 Wilson Hernández - Todos los derechos reservados",
+    "scrollTop": "Volver arriba"
+  }
+}
