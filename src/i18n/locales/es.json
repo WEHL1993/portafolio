@@ -86,22 +86,6 @@
       {
         "name": "Sass",
         "description": "Preprocesador de CSS que añade características como variables, mixins y funciones para escribir CSS más eficiente y mantenible."
-      },
-      {
-        "name": "SQL Server",
-        "description": "Sistema de gestión de bases de datos relacionales de Microsoft. Potente motor de base de datos para aplicaciones empresariales y web."
-      },
-      {
-        "name": "MySQL",
-        "description": "Base de datos relacional de código abierto más popular del mundo. Ideal para aplicaciones web y sistemas de alta concurrencia."
-      },
-      {
-        "name": "Oracle",
-        "description": "Sistema de gestión de bases de datos empresarial líder en el mercado. Robusto y escalable para aplicaciones críticas de negocio."
-      },
-      {
-        "name": "MongoDB",
-        "description": "Base de datos NoSQL orientada a documentos. Flexible y escalable, perfecta para aplicaciones modernas con datos no estructurados."
       }
     ]
   },

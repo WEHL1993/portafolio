@@ -3,6 +3,26 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { X, ZoomIn } from 'lucide-react';
+import { 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+  SiReact, 
+  SiNodedotjs, 
+  SiTypescript,
+  SiBootstrap,
+  SiJquery,
+  SiSass,
+  SiRedux
+} from 'react-icons/si';
+
+// Importar todas las imágenes de certificados
+import certReact from '../assets/certificates/Certifiacado-React.png';
+import certFrontend from '../assets/certificates/certificado-frontend.png';
+import certHtmlCss from '../assets/certificates/Certificado-HTML-CSS.png';
+import certJavaScript from '../assets/certificates/Certificado-JavaScript.png';
+import certNodeJs from '../assets/certificates/Certificado-Node.js.png';
+import certTypeScript from '../assets/certificates/Certificado-TypeScript.png';
 
 const Certificates: React.FC = () => {
   const { t } = useTranslation();
@@ -13,7 +33,70 @@ const Certificates: React.FC = () => {
 
   const [selectedCertificate, setSelectedCertificate] = useState<number | null>(null);
 
-  const certificates = t('certificates.items', { returnObjects: true }) as string[];
+  // Definir certificados directamente con sus imágenes para evitar duplicados
+  const certificatesList = [
+    { 
+      name: "HTML y CSS", 
+      image: certHtmlCss,
+      issuer: "UDEMY",
+      year: "2025",
+      fullName: "HTML y CSS - SoloLearn",
+      icon: () => (
+        <div className="flex items-center space-x-1">
+          <SiHtml5 size={18} style={{color: '#E34F26'}} />
+          <SiCss3 size={18} style={{color: '#1572B6'}} />
+        </div>
+      )
+    },
+    { 
+      name: "JavaScript", 
+      image: certJavaScript,
+      issuer: "UDEMY",
+      year: "2025",
+      fullName: "JavaScript Moderno: Guía para dominar el lenguaje",
+      icon: () => <SiJavascript size={20} style={{color: '#F7DF1E'}} />
+    },
+    { 
+      name: "React", 
+      image: certReact,
+      issuer: "UDEMY",
+      year: "2024",
+      fullName: "React: De cero a experto (Hooks y MERN)",
+      icon: () => <SiReact size={20} style={{color: '#61DAFB'}} />
+    },
+    { 
+      name: "TypeScript", 
+      image: certTypeScript,
+      issuer: "UDEMY",
+      year: "2025",
+      fullName: "TypeScript: Tu completa guía y manual de mano",
+      icon: () => <SiTypescript size={20} style={{color: '#3178C6'}} />
+    },
+    { 
+      name: "Node.js", 
+      image: certNodeJs,
+      issuer: "UDEMY",
+      year: "2025",
+      fullName: "Node.js: De cero a experto",
+      icon: () => <SiNodedotjs size={20} style={{color: '#339933'}} />
+    },
+    { 
+      name: "Frontend Frameworks", 
+      image: certFrontend,
+      issuer: "FREECODECAMP",
+      year: "2025",
+      fullName: "Frontend Frameworks: Bootstrap, jQuery, SASS, React, Redux",
+      icon: () => (
+        <div className="grid grid-cols-5 gap-1 justify-items-center mb-1">
+          <SiBootstrap size={18} style={{color: '#7952B3'}} />
+          <SiJquery size={18} style={{color: '#0769AD'}} />
+          <SiSass size={18} style={{color: '#CC6699'}} />
+          <SiReact size={18} style={{color: '#61DAFB'}} />
+          <SiRedux size={18} style={{color: '#764ABC'}} />
+        </div>
+      )
+    }
+  ];
 
   const openLightbox = (index: number) => {
     setSelectedCertificate(index);
@@ -44,7 +127,7 @@ const Certificates: React.FC = () => {
 
           {/* Certificates Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-            {certificates.map((certificate, index) => (
+            {certificatesList.map((certificate, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -54,16 +137,13 @@ const Certificates: React.FC = () => {
                 onClick={() => openLightbox(index)}
               >
                 <div className="bg-gray-900 rounded-lg overflow-hidden border border-red-700/30 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20">
-                  {/* Certificate Image Placeholder */}
-                  <div className="relative h-48 bg-gradient-to-br from-red-900 to-red-700 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-4xl mb-2">🏆</div>
-                        <div className="text-sm font-medium px-4">
-                          {certificate.split(' - ')[0]}
-                        </div>
-                      </div>
-                    </div>
+                  {/* Certificate Image Thumbnail */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={certificate.image}
+                      alt={`Miniatura de ${certificate.name}`}
+                      className="object-cover w-full h-full"
+                    />
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -77,12 +157,15 @@ const Certificates: React.FC = () => {
                   </div>
 
                   {/* Certificate Info */}
-                  <div className="p-4">
-                    <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-red-300 transition-colors">
-                      {certificate}
+                  <div className="p-4 flex flex-col items-center">
+                    <div className="flex items-center mb-2 justify-center">
+                      {certificate.icon && certificate.icon()}
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-red-300 transition-colors text-center">
+                      {certificate.name}
                     </h3>
-                    <div className="flex items-center justify-between text-xs text-gray-400">
-                      <span>Certificado verificado</span>
+                    <div className="w-full flex items-center justify-center text-xs">
+                      <span className="text-gray-400 mr-2">{certificate.issuer}</span>
                       <span className="text-green-400">✓</span>
                     </div>
                   </div>
@@ -105,7 +188,7 @@ const Certificates: React.FC = () => {
                   initial={{ scale: 0.5 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.5 }}
-                  className="relative max-w-4xl max-h-full bg-white rounded-lg overflow-hidden"
+                  className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Close Button */}
@@ -117,21 +200,21 @@ const Certificates: React.FC = () => {
                   </button>
 
                   {/* Certificate Content */}
-                  <div className="p-8 text-center">
-                    <div className="mb-6">
-                      <div className="text-6xl mb-4">🏆</div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                        {certificates[selectedCertificate]}
-                      </h3>
-                      <p className="text-gray-600">
-                        Certificado otorgado por completar exitosamente el curso
-                      </p>
-                    </div>
+                  <div className="p-4 text-center">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                      {selectedCertificate !== null && certificatesList[selectedCertificate].fullName}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {selectedCertificate !== null && certificatesList[selectedCertificate].issuer} · {selectedCertificate !== null && certificatesList[selectedCertificate].year}
+                    </p>
                     
-                    <div className="bg-gradient-to-r from-red-100 to-red-50 p-6 rounded-lg">
-                      <p className="text-gray-700 font-medium">
-                        Este certificado valida las competencias adquiridas en el área de desarrollo web y programación.
-                      </p>
+                    {/* Certificate Image */}
+                    <div className="max-h-[70vh] overflow-auto">
+                      <img 
+                        src={selectedCertificate !== null ? certificatesList[selectedCertificate].image : ''} 
+                        alt={`Certificado de ${selectedCertificate !== null ? certificatesList[selectedCertificate].name : ''}`}
+                        className="mx-auto rounded-lg shadow-lg max-w-full"
+                      />
                     </div>
                   </div>
                 </motion.div>
@@ -154,11 +237,11 @@ const Certificates: React.FC = () => {
               </p>
               <div className="flex justify-center space-x-6 text-red-400">
                 <div className="text-center">
-                  <div className="text-3xl font-bold">{certificates.length}</div>
+                  <div className="text-3xl font-bold">{certificatesList.length}</div>
                   <div className="text-sm">Certificados</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">100+</div>
+                  <div className="text-3xl font-bold">400+</div>
                   <div className="text-sm">Horas de estudio</div>
                 </div>
                 <div className="text-center">

@@ -86,22 +86,6 @@
       {
         "name": "Sass",
         "description": "CSS preprocessor that adds features like variables, mixins and functions to write more efficient and maintainable CSS."
-      },
-      {
-        "name": "SQL Server",
-        "description": "Microsoft's relational database management system. Powerful database engine for enterprise and web applications."
-      },
-      {
-        "name": "MySQL",
-        "description": "World's most popular open source relational database. Ideal for web applications and high concurrency systems."
-      },
-      {
-        "name": "Oracle",
-        "description": "Leading enterprise database management system in the market. Robust and scalable for business-critical applications."
-      },
-      {
-        "name": "MongoDB",
-        "description": "Document-oriented NoSQL database. Flexible and scalable, perfect for modern applications with unstructured data."
       }
     ]
   },

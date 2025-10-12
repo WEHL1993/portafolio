@@ -14,12 +14,8 @@ import {
   SiExpress, 
   SiBootstrap, 
   SiTailwindcss, 
-  SiSass,
-  SiMysql,
-  SiOracle,
-  SiMongodb
+  SiSass 
 } from 'react-icons/si';
-import { Database } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const { t } = useTranslation();
@@ -49,11 +45,7 @@ const Skills: React.FC = () => {
       'Express.js': '#000000',
       'Bootstrap': '#7952B3',
       'Tailwind CSS': '#06B6D4',
-      'Sass': '#CC6699',
-      'SQL Server': '#CC2927',
-      'MySQL': '#4479A1',
-      'Oracle': '#F80000',
-      'MongoDB': '#47A248'
+      'Sass': '#CC6699'
     };
     return colors[skillName] || '#FF6B6B';
   };
@@ -84,14 +76,6 @@ const Skills: React.FC = () => {
         return <SiTailwindcss className="w-12 h-12" style={{ color: iconColor }} />;
       case 'Sass':
         return <SiSass className="w-12 h-12" style={{ color: iconColor }} />;
-      case 'SQL Server':
-        return <Database className="w-12 h-12" style={{ color: iconColor }} />;
-      case 'MySQL':
-        return <SiMysql className="w-12 h-12" style={{ color: iconColor }} />;
-      case 'Oracle':
-        return <SiOracle className="w-12 h-12" style={{ color: iconColor }} />;
-      case 'MongoDB':
-        return <SiMongodb className="w-12 h-12" style={{ color: iconColor }} />;
       default:
         return <span className="text-4xl">🔧</span>;
     }
