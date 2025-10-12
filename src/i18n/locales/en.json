@@ -44,6 +44,10 @@
     "title": "Technical Skills",
     "items": [
       {
+        "name": "C#",
+        "description": "Object-oriented programming language developed by Microsoft. Ideal for developing web applications, desktop software and robust APIs."
+      },
+      {
         "name": "HTML5",
         "description": "Markup language for creating web page structure. HTML5 includes new semantic elements, APIs and better multimedia capabilities."
       },
@@ -56,16 +60,48 @@
         "description": "Programming language that adds interactivity and dynamism to web pages. Allows creating rich and interactive user experiences."
       },
       {
+        "name": "TypeScript",
+        "description": "JavaScript superset that adds static typing. Improves productivity and reduces errors in large and complex applications."
+      },
+      {
+        "name": "Node.js",
+        "description": "JavaScript runtime environment for server-side development. Enables creating scalable APIs, web servers and backend applications."
+      },
+      {
+        "name": "React",
+        "description": "JavaScript library for building interactive user interfaces. Enables creating modern web applications with reusable components."
+      },
+      {
+        "name": "Express.js",
+        "description": "Minimalist web framework for Node.js. Facilitates creating REST APIs and web servers quickly and efficiently."
+      },
+      {
         "name": "Bootstrap",
         "description": "CSS framework that facilitates development of responsive and modern interfaces with pre-designed components and grid system."
+      },
+      {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework that enables creating custom designs quickly with predefined and highly customizable classes."
       },
       {
         "name": "Sass",
         "description": "CSS preprocessor that adds features like variables, mixins and functions to write more efficient and maintainable CSS."
       },
       {
-        "name": "WordPress", 
-        "description": "Content Management System (CMS) that allows creating and managing websites in a simple and flexible way."
+        "name": "SQL Server",
+        "description": "Microsoft's relational database management system. Powerful database engine for enterprise and web applications."
+      },
+      {
+        "name": "MySQL",
+        "description": "World's most popular open source relational database. Ideal for web applications and high concurrency systems."
+      },
+      {
+        "name": "Oracle",
+        "description": "Leading enterprise database management system in the market. Robust and scalable for business-critical applications."
+      },
+      {
+        "name": "MongoDB",
+        "description": "Document-oriented NoSQL database. Flexible and scalable, perfect for modern applications with unstructured data."
       }
     ]
   },

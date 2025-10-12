@@ -3,6 +3,23 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronDown } from 'lucide-react';
+import { 
+  SiDotnet, 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+  SiTypescript, 
+  SiNodedotjs, 
+  SiReact, 
+  SiExpress, 
+  SiBootstrap, 
+  SiTailwindcss, 
+  SiSass,
+  SiMysql,
+  SiOracle,
+  SiMongodb
+} from 'react-icons/si';
+import { Database } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const { t } = useTranslation();
@@ -18,13 +35,66 @@ const Skills: React.FC = () => {
     description: string;
   }>;
 
-  const skillIcons: { [key: string]: string } = {
-    'HTML5': '🏗️',
-    'CSS3': '🎨',
-    'JavaScript': '⚡',
-    'Bootstrap': '📱',
-    'Sass': '💎',
-    'WordPress': '📝'
+
+
+  const getIconColor = (skillName: string): string => {
+    const colors: { [key: string]: string } = {
+      'C#': '#512BD4',
+      'HTML5': '#E34F26',
+      'CSS3': '#1572B6',
+      'JavaScript': '#F7DF1E',
+      'TypeScript': '#3178C6',
+      'Node.js': '#339933',
+      'React': '#61DAFB',
+      'Express.js': '#000000',
+      'Bootstrap': '#7952B3',
+      'Tailwind CSS': '#06B6D4',
+      'Sass': '#CC6699',
+      'SQL Server': '#CC2927',
+      'MySQL': '#4479A1',
+      'Oracle': '#F80000',
+      'MongoDB': '#47A248'
+    };
+    return colors[skillName] || '#FF6B6B';
+  };
+
+  const renderSkillIcon = (skillName: string) => {
+    const iconColor = getIconColor(skillName);
+    
+    switch(skillName) {
+      case 'C#':
+        return <SiDotnet className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'HTML5':
+        return <SiHtml5 className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'CSS3':
+        return <SiCss3 className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'JavaScript':
+        return <SiJavascript className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'TypeScript':
+        return <SiTypescript className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Node.js':
+        return <SiNodedotjs className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'React':
+        return <SiReact className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Express.js':
+        return <SiExpress className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Bootstrap':
+        return <SiBootstrap className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Tailwind CSS':
+        return <SiTailwindcss className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Sass':
+        return <SiSass className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'SQL Server':
+        return <Database className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'MySQL':
+        return <SiMysql className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'Oracle':
+        return <SiOracle className="w-12 h-12" style={{ color: iconColor }} />;
+      case 'MongoDB':
+        return <SiMongodb className="w-12 h-12" style={{ color: iconColor }} />;
+      default:
+        return <span className="text-4xl">🔧</span>;
+    }
   };
 
   const toggleSkill = (index: number) => {
@@ -68,7 +138,9 @@ const Skills: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="text-3xl">{skillIcons[skill.name] || '🔧'}</div>
+                    <div className="text-5xl">
+                      {renderSkillIcon(skill.name)}
+                    </div>
                     <div>
                       <h3 className="text-xl font-bold text-white">{skill.name}</h3>
                       <p className="text-red-400 text-sm">Click para expandir</p>
