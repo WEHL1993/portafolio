@@ -18,7 +18,7 @@ const AboutMe: React.FC = () => {
 
   const typedRef = useTyped({
     strings: [t('about.description')],
-    typeSpeed: 25,
+    typeSpeed: 15,
     showCursor: true,
     cursorChar: '_'
   });
@@ -48,7 +48,7 @@ const AboutMe: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden shadow-2xl h-[700px] flex flex-col"
+            className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden shadow-2xl flex flex-col max-w-4xl mx-auto"
           >
             {/* Terminal Header */}
             <div className="bg-gray-700 px-4 py-3 flex items-center space-x-2 flex-shrink-0">
@@ -63,18 +63,20 @@ const AboutMe: React.FC = () => {
             </div>
 
             {/* Terminal Content - Text Area */}
-            <div className="p-6 bg-black text-green-400 font-mono flex-1 overflow-y-auto">
+            <div className="p-6 bg-black text-green-400 font-mono min-h-[320px] sm:min-h-[350px] md:min-h-[320px] lg:min-h-[280px]">
               {/* Prompt */}
               <div className="mb-4">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex items-center space-x-2"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2"
                 >
-                  <span className="text-red-400">user@portfolio:</span>
-                  <span className="text-blue-400">{t('about.prompt')}</span>
-                  <span className="text-white">$</span>
+                  <span className="text-red-400 font-bold">user@portfolio:</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">{t('about.prompt')}</span>
+                    <span className="text-white">$</span>
+                  </div>
                 </motion.div>
               </div>
 
@@ -83,7 +85,7 @@ const AboutMe: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 1.2 }}
-                className="text-white leading-relaxed text-base whitespace-pre-line"
+                className="text-white leading-relaxed text-sm sm:text-base whitespace-pre-line"
               >
                 <span ref={typedRef as React.RefObject<HTMLSpanElement>}></span>
               </motion.div>
@@ -96,40 +98,40 @@ const AboutMe: React.FC = () => {
               transition={{ duration: 0.6, delay: 2 }}
               className="p-4 bg-gray-900 border-t border-gray-700 flex-shrink-0"
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
                   {/* Imagen de Desarrollo */}
-                  <div className="h-32 bg-gradient-to-br from-red-950 to-black flex items-center justify-center relative overflow-hidden">
+                  <div className="h-28 sm:h-32 bg-gradient-to-br from-red-950 to-black flex items-center justify-center relative overflow-hidden">
                     <img src={desarrolloImg} alt="Desarrollo" className="w-full h-full object-contain" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-red-400 font-bold text-base mb-2">💻 Desarrollo</h3>
-                    <p className="text-gray-300 text-sm">Front-end moderno con React, TypeScript y herramientas actuales</p>
+                  <div className="p-3 sm:p-4">
+                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">💻 Desarrollo</h3>
+                    <p className="text-gray-300 text-xs sm:text-sm">Front-end moderno con React, TypeScript y herramientas actuales</p>
                   </div>
                 </div>
                 
                 <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
                   {/* Imagen de Lectura */}
-                  <div className="h-32 bg-gradient-to-br from-gray-900 to-red-900 flex items-center justify-center relative overflow-hidden">
+                  <div className="h-28 sm:h-32 bg-gradient-to-br from-gray-900 to-red-900 flex items-center justify-center relative overflow-hidden">
                     <img src={lecturaImg} alt="Lectura" className="w-full h-full object-contain" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-red-400 font-bold text-base mb-2">📚 Lectura</h3>
-                    <p className="text-gray-300 text-sm">Apasionado por los libros de desarrollo personal y tecnología</p>
+                  <div className="p-3 sm:p-4">
+                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">📚 Lectura</h3>
+                    <p className="text-gray-300 text-xs sm:text-sm">Apasionado por los libros de desarrollo personal y tecnología</p>
                   </div>
                 </div>
                 
                 <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
                   {/* Imagen de Caminar */}
-                  <div className="h-32 bg-gradient-to-br from-black to-red-800 flex items-center justify-center relative overflow-hidden">
+                  <div className="h-28 sm:h-32 bg-gradient-to-br from-black to-red-800 flex items-center justify-center relative overflow-hidden">
                     <img src={caminarImg} alt="Caminar" className="w-full h-full object-contain" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-red-400 font-bold text-base mb-2">🚶‍♂️ Caminar</h3>
-                    <p className="text-gray-300 text-sm">Despeja la mente, estimula la creatividad y mejora la salud mental</p>
+                  <div className="p-3 sm:p-4">
+                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">🚶‍♂️ Caminar</h3>
+                    <p className="text-gray-300 text-xs sm:text-sm">Despeja la mente, estimula la creatividad y mejora la salud mental</p>
                   </div>
                 </div>
               </div>

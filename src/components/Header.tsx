@@ -17,6 +17,7 @@ const Header: React.FC = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('portfolio-language', lng);
   };
 
   const scrollToSection = (href: string) => {
