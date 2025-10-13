@@ -100,6 +100,14 @@
       "Desarrollo Web 2 - Google & IEI"
     ]
   },
+  "contact": {
+    "title": "Contacto",
+    "getInTouch": "Ponte en contacto",
+    "description": "Estoy abierto a oportunidades laborales y colaboraciones en proyectos interesantes. No dudes en enviarme un mensaje si tienes alguna pregunta o propuesta.",
+    "sendMessage": "Envía un mensaje",
+    "location": "Ubicación",
+    "social": "Redes Sociales"
+  },
   "footer": {
     "copyright": "© 2025 Wilson Hernández - Todos los derechos reservados",
     "scrollTop": "Volver arriba"

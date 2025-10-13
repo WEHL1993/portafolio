@@ -5,6 +5,7 @@ import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
 import Skills from '../components/Skills';
 import Certificates from '../components/Certificates';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
 const Layout: React.FC = () => {
@@ -17,6 +18,7 @@ const Layout: React.FC = () => {
         <Projects />
         <Skills />
         <Certificates />
+        <Contact />
       </main>
       <Footer />
     </div>

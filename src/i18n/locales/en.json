@@ -100,6 +100,14 @@
       "Web Development 2 - Google & IEI"
     ]
   },
+  "contact": {
+    "title": "Contact",
+    "getInTouch": "Get in touch",
+    "description": "I'm open to job opportunities and collaborations on interesting projects. Feel free to send me a message if you have any questions or proposals.",
+    "sendMessage": "Send a message",
+    "location": "Location",
+    "social": "Social Media"
+  },
   "footer": {
     "copyright": "© 2025 Wilson Hernández - All rights reserved",
     "scrollTop": "Back to top"
