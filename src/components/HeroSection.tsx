@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useBaffle } from '../hooks/useBaffle';
+import { Linkedin, Github, Mail, Download } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
@@ -59,50 +60,70 @@ const HeroSection: React.FC = () => {
                 {t('hero.role')}
               </h2>
             </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mt-8"
+            >
+              <motion.a
+                href="mailto:wilsoneduardohl@gmail.com"
+                className="flex items-center gap-2 text-gray-300 hover:text-red-300 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={20} className="text-red-400" />
+                <span>wilsoneduardohl@gmail.com</span>
+              </motion.a>
+
+              <motion.a
+                href="https://github.com/wilson-hernandez"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-red-300 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Github size={20} className="text-red-400" />
+                <span>GitHub</span>
+              </motion.a>
+
+              <motion.a
+                href="https://linkedin.com/in/wilson-hernandez"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-red-300 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Linkedin size={20} className="text-red-400" />
+                <span>LinkedIn</span>
+              </motion.a>
+            </motion.div>
+
+            {/* CV Download Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              className="mt-8"
+            >
+              <motion.a
+                href="/src/assets/cv/wilson-hernandez-cv.pdf"
+                download
+                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-full shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download size={18} />
+                <span>Descargar CV</span>
+              </motion.a>
+            </motion.div>
           </div>
 
-          {/* Decorative Elements */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="flex justify-center space-x-4 mt-8"
-          >
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-2 h-2 bg-red-400 rounded-full"
-                animate={{ 
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 1, 0.3] 
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  delay: i * 0.3 
-                }}
-              />
-            ))}
-          </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-white text-sm font-light"
-            >
-              <div className="flex flex-col items-center space-y-2">
-                <span>Scroll Down</span>
-                <div className="w-px h-8 bg-red-400"></div>
-              </div>
-            </motion.div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
