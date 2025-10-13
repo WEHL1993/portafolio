@@ -24,6 +24,9 @@
     "tailwindcss": "^4.1.14",
     "typed.js": "^2.1.0"
   },
+  "engines": {
+    "node": "20"
+  },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@types/react": "^19.1.8",
