@@ -98,7 +98,10 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
   };
 
   // Manejador de validación antes del envío
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Estados para manejar la carga
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevenimos el envío tradicional
 
     // Validamos el formulario
@@ -106,27 +109,47 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
       return; // Si hay errores, detenemos aquí
     }
 
-    // Si el formulario es válido, enviamos los datos manualmente
+    // Activar estado de carga inmediatamente
+    setIsLoading(true);
+
+    // Importante: Mostrar inmediatamente la página de agradecimiento
+    // para dar feedback instantáneo al usuario
+    setTimeout(() => {
+      setIsSubmitted(true);
+    }, 300); // Un pequeño delay para que se vea natural
+
+    // Si el formulario es válido, enviamos los datos en segundo plano
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
     
-    fetch(`https://formsubmit.co/${recipientEmail}`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
+    // Agregar un parámetro aleatorio para evitar cachés
+    const timestamp = new Date().getTime();
+    formData.append('_nocache', timestamp.toString());
+    
+    // Enviar datos en segundo plano con navegador en modo no bloqueante
+    const sendInBackground = async () => {
+      try {
+        const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache, no-store'
+          }
+        });
+        
+        if (!response.ok) {
+          console.error('Error al enviar el formulario:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al enviar el formulario:', error);
+      } finally {
+        setIsLoading(false);
       }
-    })
-    .then(response => {
-      if (response.ok) {
-        setIsSubmitted(true); // Mostrar página de agradecimiento
-      } else {
-        console.error('Error al enviar el formulario:', response.statusText);
-      }
-    })
-    .catch(error => {
-      console.error('Error al enviar el formulario:', error);
-    });
+    };
+
+    // Ejecutar en segundo plano
+    sendInBackground();
   };
   
   // Función para resetear el formulario y volver a mostrar el formulario
@@ -225,12 +248,26 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
         {/* Botón de envío */}
         <button
           type="submit"
-          className="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors flex items-center justify-center space-x-2"
+          disabled={isLoading}
+          className={`w-full ${isLoading ? 'bg-red-700' : 'bg-red-600 hover:bg-red-500'} text-white py-3 px-6 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 font-medium text-base hover:shadow-xl`}
+          style={{ background: isLoading ? '#cc0000' : '#ff0000' }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-          </svg>
-          <span>Enviar mensaje</span>
+          {isLoading ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Enviando...</span>
+            </>
+          ) : (
+            <>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 mr-1">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <span>Enviar mensaje</span>
+            </>
+          )}
         </button>
       </form>
     </div>
