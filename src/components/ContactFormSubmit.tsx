@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import DirectFormSubmit from './DirectFormSubmit';
-import { Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 
 const ContactFormSubmit: React.FC = () => {
   const { t } = useTranslation();
@@ -61,6 +61,14 @@ const ContactFormSubmit: React.FC = () => {
                     <div>
                       <h4 className="text-white font-medium">{t('contact.location')}</h4>
                       <p className="text-gray-400">Guazacapán, Santa Rosa</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <Phone className="text-red-500 mt-1 flex-shrink-0" size={20} />
+                    <div>
+                      <h4 className="text-white font-medium">{t('contact.phone')}</h4>
+                      <p className="text-gray-400">5431-6741</p>
                     </div>
                   </div>
 

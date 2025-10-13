@@ -106,6 +106,7 @@
     "description": "I'm open to job opportunities and collaborations on interesting projects. Feel free to send me a message if you have any questions or proposals.",
     "sendMessage": "Send a message",
     "location": "Location",
+    "phone": "Phone",
     "social": "Social Media"
   },
   "footer": {
