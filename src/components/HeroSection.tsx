@@ -9,7 +9,7 @@ const HeroSection: React.FC = () => {
   const nameRef = useBaffle(t('hero.name'), { characters: '█▓▒░/<>', speed: 75 });
 
   return (
-    <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 relative overflow-hidden">
+    <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-red-900/20"></div>
@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
               </motion.a>
 
               <motion.a
-                href="https://github.com/wilson-hernandez"
+                href="https://github.com/WEHL1993"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-gray-300 hover:text-red-300 transition-colors"

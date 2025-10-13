@@ -126,6 +126,9 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
     const timestamp = new Date().getTime();
     formData.append('_nocache', timestamp.toString());
     
+    // Asegurar activación de FormSubmit
+    formData.append('_autoresponse', 'Tu mensaje ha sido recibido. ¡Gracias por contactarme!');
+    
     // Enviar datos en segundo plano con navegador en modo no bloqueante
     const sendInBackground = async () => {
       try {
@@ -178,6 +181,7 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
         <input type="hidden" name="_subject" value={`${subjectPrefix} - De: ${formData.name}`} />
         <input type="hidden" name="_template" value="box" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_replyto" value={formData.email} />
         
         {/* Campo de nombre */}
         <div>

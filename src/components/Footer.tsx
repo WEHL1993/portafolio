@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
               <Linkedin size={22} />
             </motion.a>
             <motion.a
-              href="https://github.com/wilson-hernandez"
+              href="https://github.com/WEHL1993"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-300 transition-colors"

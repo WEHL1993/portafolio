@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header: React.FC = () => {
@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
+    { key: 'home', href: '#hero' }, // Cambio a #hero para tener una referencia más específica
     { key: 'about', href: '#about' },
     { key: 'projects', href: '#projects' },
     { key: 'skills', href: '#skills' },
@@ -21,11 +22,21 @@ const Header: React.FC = () => {
   };
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Cerrar el menú móvil si está abierto
     setIsMenuOpen(false);
+    
+    if (href === '#') {
+      // Si es el botón Home, ir al inicio de la página con un pequeño retraso para garantizar que funcione
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 50);
+    } else {
+      // Para otras secciones, desplazarse a la sección correspondiente
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -60,11 +71,18 @@ const Header: React.FC = () => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="text-white hover:text-red-300 transition-colors duration-200 font-medium"
+                className="text-white hover:text-red-300 transition-colors duration-200 font-medium flex items-center"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {t(`nav.${item.key}`)}
+                {item.key === 'home' ? (
+                  <div className="flex items-center">
+                    <Home size={20} className="mr-1 text-red-500" />
+                    <span>{t(`nav.${item.key}`)}</span>
+                  </div>
+                ) : (
+                  t(`nav.${item.key}`)
+                )}
               </motion.a>
             ))}
           </nav>
@@ -121,10 +139,17 @@ const Header: React.FC = () => {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
-                    className="text-white hover:text-red-300 transition-colors duration-200 py-2 px-4 rounded hover:bg-red-800/30"
+                    className="text-white hover:text-red-300 transition-colors duration-200 py-2 px-4 rounded hover:bg-red-800/30 flex items-center"
                     whileHover={{ x: 10 }}
                   >
-                    {t(`nav.${item.key}`)}
+                    {item.key === 'home' ? (
+                      <div className="flex items-center">
+                        <Home size={20} className="mr-2 text-red-500" />
+                        <span>{t(`nav.${item.key}`)}</span>
+                      </div>
+                    ) : (
+                      t(`nav.${item.key}`)
+                    )}
                   </motion.a>
                 ))}
               </nav>
