@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,9 +10,41 @@ const AboutMe: React.FC = () => {
     threshold: 0.3,
     triggerOnce: true,
   });
+  
+  // Estado para guardar si estamos en vista móvil
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Efecto para detectar el tamaño de pantalla
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    // Comprobar al iniciar
+    checkIfMobile();
+    
+    // Añadir listener para cambios de tamaño
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Limpiar listener al desmontar
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  // Ajustar el texto según el tamaño de pantalla
+  const getAboutText = () => {
+    if (isMobile) {
+      const fullText = t('about.description');
+      // En móviles mostramos una versión más corta y optimizada
+      const paragraphs = fullText.split('\n\n');
+      // Acortamos el primer párrafo para que quepa mejor en móviles
+      const mobileText = paragraphs[0].split('.').slice(0, 3).join('.') + '.';
+      return mobileText;
+    }
+    return t('about.description');
+  };
 
   const typedRef = useTyped({
-    strings: [t('about.description')],
+    strings: [getAboutText()],
     typeSpeed: 2, // Velocidad máxima (2ms entre caracteres)
     backSpeed: 0, // Sin retroceso
     showCursor: true,
@@ -65,10 +97,14 @@ const AboutMe: React.FC = () => {
               </div>
             </div>
 
-            {/* Terminal Content - Text Area con altura reducida ajustada al contenido */}
+            {/* Terminal Content - Text Area 100% adaptativa */}
             <div 
-              className="p-4 md:p-6 bg-black text-green-400 font-mono h-[300px] sm:h-[320px] md:h-[330px] lg:h-[340px] xl:h-[350px]"
-              /* Alturas reducidas para evitar espacio sobrante y padding menor */
+              className={`${isMobile ? 'p-2.5' : 'p-3 md:p-6'} bg-black text-green-400 font-mono`}
+              style={{
+                height: 'auto',
+                minHeight: isMobile ? '180px' : '380px', /* Altura reducida para móviles */
+                maxHeight: isMobile ? '230px' : 'none', /* Limitar altura en móviles */
+              }}
             >
               {/* Prompt */}
               <div className="mb-2">
@@ -76,25 +112,24 @@ const AboutMe: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-0.5 sm:gap-2"
                 >
-                  <span className="text-red-400 font-bold text-sm sm:text-base">user@portfolio:</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-blue-400 text-sm sm:text-base">{t('about.prompt')}</span>
-                    <span className="text-white text-sm sm:text-base">$</span>
+                  <span className="text-red-400 font-bold text-xs sm:text-sm">user@portfolio:</span>
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <span className="text-blue-400 text-xs sm:text-sm">{t('about.prompt')}</span>
+                    <span className="text-white text-xs sm:text-sm">$</span>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Typed Description - Visible inmediatamente con tamaño fijo */}
+              {/* Typed Description - Adaptativo para todos los dispositivos */}
               <motion.div
                 initial={{ opacity: 1 }} 
                 animate={{ opacity: 1 }}
-                className="text-white leading-tight text-xs sm:text-sm md:text-base whitespace-pre-line"
-                style={{ height: 'calc(100% - 30px)' }} /* Altura restante después del prompt (reducido) */
+                className={`text-white ${isMobile ? 'leading-snug' : 'leading-tight'} text-xs sm:text-sm md:text-base whitespace-pre-line`}
               >
-                {/* El texto aparecerá aquí sin afectar el tamaño del contenedor */}
-                <div className="relative h-full">
+                {/* El texto aparecerá aquí y ajustará la altura del contenedor */}
+                <div className="relative">
                   <span ref={typedRef as React.RefObject<HTMLSpanElement>}></span>
                 </div>
               </motion.div>
