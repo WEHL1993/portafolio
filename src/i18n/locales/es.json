@@ -17,26 +17,29 @@
   },
   "projects": {
     "title": "Proyectos",
+    "viewRepository": "Ver Repositorio",
+    "viewDemo": "Ver Demo",
     "items": [
       {
-        "title": "MiViaje.com",
-        "description": "Clon de Airbnb desarrollado con tecnologías modernas",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
+        "title": "Hoja de vida",
+        "description": "Desarrollo y Publicación de una Página Web Personal",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap", "React"],
+        "repoUrl": "https://github.com/WEHL1993/hoja-de-vida",
+        "demoUrl": "https://hoja-de-vida-neon.vercel.app"
       },
       {
-        "title": "Cafe Milanello",
-        "description": "Sitio web para cafetería con diseño elegante",
-        "technologies": ["HTML5", "CSS3", "Sass", "JavaScript"]
+        "title": "Formulario",
+        "description": "Formulario web donde guarde la información ingresada",
+        "technologies": ["HTML5", "CSS3", "React", "NodeJS"],
+        "repoUrl": "https://github.com/WEHL1993/TareaFormulario",
+        "demoUrl": "https://storied-pudding-c1fc3c.netlify.app/"
       },
       {
-        "title": "Blog Personal",
-        "description": "Blog personal con sistema de gestión de contenido",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
-      },
-      {
-        "title": "Virtual Shop",
-        "description": "Tienda virtual con galería de productos",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Sass"]
+        "title": "Diseño Responsivo",
+        "description": "Implementación de Diseño Responsivo en una página web",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+        "repoUrl": "https://github.com/WEHL1993/diseno-responsive",
+        "demoUrl": "https://eclectic-sprinkles-4c7250.netlify.app/"
       }
     ]
   },

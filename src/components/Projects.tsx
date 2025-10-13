@@ -3,6 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github } from 'lucide-react';
+import { 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+  SiTypescript, 
+  SiNodedotjs, 
+  SiReact, 
+  SiExpress, 
+  SiBootstrap, 
+  SiTailwindcss, 
+  SiSass 
+} from 'react-icons/si';
+import HojaDeVida from '../assets/proyectos/Hoja-de-Vida.png';
+import Formulario from '../assets/proyectos/Formulario.png';
+import DisenoResponsivo from '../assets/proyectos/Diseño-Responsivo.png';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -15,19 +30,53 @@ const Projects: React.FC = () => {
     title: string;
     description: string;
     technologies: string[];
+    repoUrl: string;
+    demoUrl: string;
   }>;
 
-  const getTechColor = (tech: string) => {
+  const getIconColor = (skillName: string): string => {
     const colors: { [key: string]: string } = {
-      'HTML5': 'bg-orange-500 text-white',
-      'CSS3': 'bg-blue-500 text-white',
-      'JavaScript': 'bg-yellow-500 text-black',
-      'Bootstrap': 'bg-purple-600 text-white',
-      'Sass': 'bg-pink-500 text-white',
-      'React': 'bg-cyan-500 text-white',
-      'TypeScript': 'bg-blue-600 text-white'
+      'HTML5': '#E34F26',
+      'CSS3': '#1572B6',
+      'JavaScript': '#F7DF1E',
+      'TypeScript': '#3178C6',
+      'NodeJS': '#339933',
+      'React': '#61DAFB',
+      'Express.js': '#000000',
+      'Bootstrap': '#7952B3',
+      'Tailwind CSS': '#06B6D4',
+      'Sass': '#CC6699'
     };
-    return colors[tech] || 'bg-gray-500 text-white';
+    return colors[skillName] || '#FF6B6B';
+  };
+
+  const renderSkillIcon = (skillName: string) => {
+    const iconColor = getIconColor(skillName);
+    
+    switch(skillName) {
+      case 'HTML5':
+        return <SiHtml5 className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'CSS3':
+        return <SiCss3 className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'JavaScript':
+        return <SiJavascript className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'TypeScript':
+        return <SiTypescript className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'NodeJS':
+        return <SiNodedotjs className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'React':
+        return <SiReact className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'Express.js':
+        return <SiExpress className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'Bootstrap':
+        return <SiBootstrap className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'Tailwind CSS':
+        return <SiTailwindcss className="w-8 h-8" style={{ color: iconColor }} />;
+      case 'Sass':
+        return <SiSass className="w-8 h-8" style={{ color: iconColor }} />;
+      default:
+        return <SiJavascript className="w-8 h-8 text-gray-400" />;
+    }
   };
 
   return (
@@ -62,30 +111,30 @@ const Projects: React.FC = () => {
                 <div className="bg-gray-900 rounded-lg overflow-hidden border border-red-700/30 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20">
                   {/* Project Image */}
                   <div className="relative h-48 bg-gradient-to-br from-red-900 to-red-700 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center text-white text-6xl opacity-20">
-                      {project.title.charAt(0)}
-                    </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300"></div>
-                    
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="flex space-x-4">
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors"
-                        >
-                          <ExternalLink size={20} />
-                        </motion.button>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-700 transition-colors"
-                        >
-                          <Github size={20} />
-                        </motion.button>
+                    {project.title === "Hoja de vida" ? (
+                      <img 
+                        src={HojaDeVida} 
+                        alt={project.title}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : project.title === "Formulario" ? (
+                      <img 
+                        src={Formulario} 
+                        alt={project.title}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : project.title === "Diseño Responsivo" ? (
+                      <img 
+                        src={DisenoResponsivo} 
+                        alt={project.title}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-white text-6xl opacity-20">
+                        {project.title.charAt(0)}
                       </div>
-                    </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
                   </div>
 
                   {/* Project Content */}
@@ -99,40 +148,49 @@ const Projects: React.FC = () => {
                     </p>
 
                     {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-4 mb-4 items-center justify-center">
                       {project.technologies.map((tech, techIndex) => (
-                        <motion.span
+                        <motion.div
                           key={techIndex}
                           initial={{ opacity: 0, scale: 0 }}
                           animate={inView ? { opacity: 1, scale: 1 } : {}}
                           transition={{ duration: 0.3, delay: 0.5 + techIndex * 0.1 }}
-                          className={`px-3 py-1 rounded-full text-sm font-medium ${getTechColor(tech)}`}
+                          className="flex flex-col items-center"
+                          title={tech}
                         >
-                          {tech}
-                        </motion.span>
+                          {renderSkillIcon(tech)}
+                          <span className="text-xs text-gray-400 mt-1">{tech}</span>
+                        </motion.div>
                       ))}
+                    </div>
+                    
+                    {/* Project Links */}
+                    <div className="flex justify-center gap-3 pt-3 border-t border-gray-800">
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-4 py-2 bg-gray-800 text-white text-sm rounded hover:bg-gray-700 transition-colors"
+                      >
+                        <Github size={16} className="inline-block" />
+                        <span>{t('projects.viewRepository')}</span>
+                      </a>
+                      
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-4 py-2 bg-red-700 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                      >
+                        <ExternalLink size={16} className="inline-block" />
+                        <span>{t('projects.viewDemo')}</span>
+                      </a>
                     </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          {/* View More Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="text-center mt-12"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-3 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 border border-red-500/50"
-            >
-              Ver más proyectos
-            </motion.button>
-          </motion.div>
         </motion.div>
       </div>
     </section>

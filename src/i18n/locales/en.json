@@ -17,26 +17,29 @@
   },
   "projects": {
     "title": "Projects",
+    "viewRepository": "View Repository",
+    "viewDemo": "View Demo",
     "items": [
       {
-        "title": "MiViaje.com",
-        "description": "Airbnb clone developed with modern technologies",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
+        "title": "Hoja de vida",
+        "description": "Development and Publication of a Personal Web Page",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap", "React"],
+        "repoUrl": "https://github.com/WEHL1993/hoja-de-vida",
+        "demoUrl": "https://hoja-de-vida-neon.vercel.app"
       },
       {
-        "title": "Cafe Milanello", 
-        "description": "Coffee shop website with elegant design",
-        "technologies": ["HTML5", "CSS3", "Sass", "JavaScript"]
+        "title": "Formulario", 
+        "description": "Web form that saves entered information",
+        "technologies": ["HTML5", "CSS3", "React", "NodeJS"],
+        "repoUrl": "https://github.com/WEHL1993/TareaFormulario",
+        "demoUrl": "https://storied-pudding-c1fc3c.netlify.app/"
       },
       {
-        "title": "Personal Blog",
-        "description": "Personal blog with content management system",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"]
-      },
-      {
-        "title": "Virtual Shop",
-        "description": "Virtual store with product gallery",
-        "technologies": ["HTML5", "CSS3", "JavaScript", "Sass"]
+        "title": "Responsive Design",
+        "description": "Implementation of Responsive Design in a web page",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+        "repoUrl": "https://github.com/WEHL1993/diseno-responsive",
+        "demoUrl": "https://eclectic-sprinkles-4c7250.netlify.app/"
       }
     ]
   },
