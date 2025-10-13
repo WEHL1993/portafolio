@@ -1,69 +1,91 @@
-# React + TypeScript + Vite
+# Portafolio Personal de Wilson Hernández
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mi portafolio web personal desarrollado con React, TypeScript y Vite.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Diseño responsive con Tailwind CSS
+- Animaciones suaves con Framer Motion
+- Soporte para múltiples idiomas (i18n)
+- Formulario de contacto funcional (EmailJS)
+- Optimizado para SEO
 
-## Expanding the ESLint configuration
+## 📋 Requisitos Previos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20.x o superior
+- npm o yarn
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔧 Instalación
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/WEHL1993/portafolio.git
+   cd portafolio
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Configura las variables de entorno:
+   - Crea un archivo `.env` en la raíz del proyecto basado en `.env.example`
+   - Actualiza las variables con tus propias claves API
+
+## ⚙️ Configuración del Formulario de Contacto
+
+Para que el formulario de contacto envíe correos directamente a tu bandeja de entrada, sigue estos pasos:
+
+1. **Consulta el archivo `SETUP_CORREOS.md`** para instrucciones detalladas paso a paso
+2. Regístrate en [EmailJS](https://www.emailjs.com/) con tu correo `wilsoneduardohl@gmail.com`
+3. Configura tu servicio de correo, plantilla y obtén tus credenciales
+4. Actualiza el archivo `.env` con tu Public Key:
+   ```
+   VITE_EMAILJS_PUBLIC_KEY=tu_clave_publica_aqui
+   ```
+5. Actualiza los IDs en `src/services/emailService.ts`:
+   ```typescript
+   export const EMAIL_CONFIG = {
+     serviceId: 'tu_service_id_aqui',
+     templateId: 'tu_template_id_aqui',
+     // ...
+   };
+     serviceId: 'tu_service_id_aqui',
+     templateId: 'tu_template_id_aqui',
+     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+   };
+   ```
+
+Para más detalles, consulta el archivo [EMAIL_SETUP.md](./EMAIL_SETUP.md).
+
+## 🚀 Ejecución
+
+Inicia el servidor de desarrollo:
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El sitio estará disponible en: `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Construcción para Producción
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+```
+
+Los archivos compilados estarán en la carpeta `dist`.
+
+## 🛠️ Tecnologías Utilizadas
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [i18next](https://www.i18next.com/)
+- [EmailJS](https://www.emailjs.com/)
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para detalles
 ```

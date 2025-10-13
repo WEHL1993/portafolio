@@ -1,10 +1,12 @@
-import emailjs from '@emailjs/browser';
+// Este archivo se ha mantenido para evitar errores de importación
+// pero toda la funcionalidad EmailJS ha sido eliminada.
+// Si necesitas enviar correos, usa el componente DirectFormSubmit que utiliza FormSubmit.
 
-// Configuración de EmailJS
+// Configuración mínima para evitar errores
 export const EMAIL_CONFIG = {
-  serviceId: 'service_portfolio', // Reemplaza con tu Service ID
-  templateId: 'template_contact', // Reemplaza con tu Template ID
-  publicKey: 'YOUR_PUBLIC_KEY' // Reemplaza con tu Public Key
+  serviceId: '',
+  templateId: '',
+  publicKey: ''
 };
 
 export interface ContactFormData {
@@ -13,26 +15,9 @@ export interface ContactFormData {
   message: string;
 }
 
-export const sendContactEmail = async (formData: ContactFormData): Promise<boolean> => {
-  try {
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message,
-      to_email: 'wilsoneduardohl@gmail.com', // Tu correo de destino
-      reply_to: formData.email
-    };
-
-    const response = await emailjs.send(
-      EMAIL_CONFIG.serviceId,
-      EMAIL_CONFIG.templateId,
-      templateParams,
-      EMAIL_CONFIG.publicKey
-    );
-
-    return response.status === 200;
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return false;
-  }
+// Función de envío de email desactivada
+export const sendContactEmail = async (_formData: ContactFormData): Promise<boolean> => {
+  console.warn('La funcionalidad EmailJS ha sido deshabilitada.');
+  console.log('Para enviar correos, usa el componente DirectFormSubmit que utiliza FormSubmit.');
+  return false;
 };

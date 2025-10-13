@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sendContactEmail } from '../services/emailService';
+import { sendMailtoLink } from '../services/mailtoService';
 import type { ContactFormData } from '../services/emailService';
 
 interface UseContactFormReturn {
@@ -67,16 +67,20 @@ export const useContactForm = (): UseContactFormReturn => {
     setError(null);
 
     try {
-      const success = await sendContactEmail(formData);
+      console.log('Usando el método de correo mailto para el envío de formulario');
       
-      if (success) {
+      // Usar el método de mailto: link
+      try {
+        sendMailtoLink(formData);
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
-      } else {
-        setError('Error al enviar el mensaje. Inténtalo de nuevo.');
+      } catch (mailtoError) {
+        console.error('Error al abrir el cliente de correo:', mailtoError);
+        setError('Error al abrir el cliente de correo. Intenta contactar directamente a wilsoneduardohl@gmail.com');
       }
-    } catch {
-      setError('Error de conexión. Verifica tu internet.');
+    } catch (err) {
+      console.error('Excepción capturada en el envío del formulario:', err);
+      setError('Error de conexión. Intenta más tarde o contacta directamente a wilsoneduardohl@gmail.com');
     } finally {
       setIsSubmitting(false);
     }

@@ -5,7 +5,7 @@ import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
 import Skills from '../components/Skills';
 import Certificates from '../components/Certificates';
-import Contact from '../components/Contact';
+import ContactFormSubmit from '../components/ContactFormSubmit';
 import Footer from '../components/Footer';
 
 const Layout: React.FC = () => {
@@ -18,7 +18,9 @@ const Layout: React.FC = () => {
         <Projects />
         <Skills />
         <Certificates />
-        <Contact />
+        
+        {/* Formulario de contacto con FormSubmit */}
+        <ContactFormSubmit />
       </main>
       <Footer />
     </div>

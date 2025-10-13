@@ -2,13 +2,14 @@
 
 ## 🚀 Configuración de EmailJS para Envío de Correos
 
-Para que el formulario de contacto funcione y envíe correos reales a tu email `wilsoneduardohl@gmail.com`, sigue estos pasos:
+Para que el formulario de contacto funcione y envíe correos reales a tu email `wilsoneduardohl@gmail.com`, sigue estos pasos EXACTAMENTE:
 
 ### 1. 📧 Crear cuenta en EmailJS
 
 1. Ve a [https://www.emailjs.com/](https://www.emailjs.com/)
 2. Regístrate con tu email
 3. Confirma tu cuenta
+4. Inicia sesión en tu cuenta
 
 ### 2. 🔧 Configurar el Servicio
 
@@ -53,13 +54,21 @@ Este mensaje fue enviado desde tu portafolio web.
 
 ### 5. 💻 Actualizar la Configuración
 
-Edita el archivo `src/services/emailService.ts` y reemplaza:
+1. Edita el archivo `.env` en la raíz del proyecto y actualiza la clave pública:
+
+```
+VITE_EMAILJS_PUBLIC_KEY=tu_public_key_aqui
+```
+
+⚠️ **IMPORTANTE**: La Public Key empieza siempre con `user_` seguido de caracteres alfanuméricos.
+
+2. Edita el archivo `src/services/emailService.ts` y reemplaza los IDs de servicio y plantilla:
 
 ```typescript
 export const EMAIL_CONFIG = {
-  serviceId: 'tu_service_id_aqui',     // Reemplaza
-  templateId: 'tu_template_id_aqui',   // Reemplaza  
-  publicKey: 'tu_public_key_aqui'      // Reemplaza
+  serviceId: 'service_xxxxxx',     // Reemplaza con tu Service ID (comienza con 'service_')
+  templateId: 'template_yyyyyy',   // Reemplaza con tu Template ID (comienza con 'template_')
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 };
 ```
 
