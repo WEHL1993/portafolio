@@ -8,6 +8,8 @@ interface UseTypedOptions {
   loop?: boolean;
   showCursor?: boolean;
   cursorChar?: string;
+  startDelay?: number;
+  onComplete?: (self: Typed) => void;
 }
 
 export const useTyped = (options: UseTypedOptions) => {
@@ -22,7 +24,9 @@ export const useTyped = (options: UseTypedOptions) => {
         backSpeed: options.backSpeed || 30,
         loop: options.loop || false,
         showCursor: options.showCursor !== false,
-        cursorChar: options.cursorChar || '|'
+        cursorChar: options.cursorChar || '|',
+        startDelay: options.startDelay || 0,
+        onComplete: options.onComplete
       });
     }
 

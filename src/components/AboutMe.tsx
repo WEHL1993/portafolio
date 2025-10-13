@@ -4,11 +4,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTyped } from '../hooks/useTyped';
 
-// Importar imágenes
-import desarrolloImg from '../assets/images/desarrollo.png';
-import lecturaImg from '../assets/images/lectura.png';
-import caminarImg from '../assets/images/caminar.png';
-
 const AboutMe: React.FC = () => {
   const { t } = useTranslation();
   const { ref, inView } = useInView({
@@ -18,13 +13,21 @@ const AboutMe: React.FC = () => {
 
   const typedRef = useTyped({
     strings: [t('about.description')],
-    typeSpeed: 15,
+    typeSpeed: 2, // Velocidad máxima (2ms entre caracteres)
+    backSpeed: 0, // Sin retroceso
     showCursor: true,
-    cursorChar: '_'
+    cursorChar: '_',
+    // Configuración adicional para mejorar el rendimiento
+    loop: false,
+    startDelay: 0,
+    // Función al completar la animación
+    onComplete: () => {
+      // No hacer nada al completar, el texto quedará visible
+    }
   });
 
   return (
-    <section id="about" className="w-full py-20 bg-gradient-to-br from-gray-900 to-black overflow-x-hidden">
+    <section id="about" className="w-full py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-gray-900 to-black overflow-x-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           ref={ref}
@@ -38,17 +41,17 @@ const AboutMe: React.FC = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-white"
+            className="text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 lg:mb-20 text-white"
           >
             {t('about.title')}
           </motion.h2>
 
-          {/* Terminal Container */}
+          {/* Terminal Container - Tamaño fijo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden shadow-2xl flex flex-col max-w-4xl mx-auto"
+            className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden shadow-2xl flex flex-col w-full"
           >
             {/* Terminal Header */}
             <div className="bg-gray-700 px-4 py-3 flex items-center space-x-2 flex-shrink-0">
@@ -62,80 +65,40 @@ const AboutMe: React.FC = () => {
               </div>
             </div>
 
-            {/* Terminal Content - Text Area */}
-            <div className="p-6 bg-black text-green-400 font-mono min-h-[320px] sm:min-h-[350px] md:min-h-[320px] lg:min-h-[280px]">
+            {/* Terminal Content - Text Area con altura reducida ajustada al contenido */}
+            <div 
+              className="p-4 md:p-6 bg-black text-green-400 font-mono h-[300px] sm:h-[320px] md:h-[330px] lg:h-[340px] xl:h-[350px]"
+              /* Alturas reducidas para evitar espacio sobrante y padding menor */
+            >
               {/* Prompt */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.8 }}
                   className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2"
                 >
-                  <span className="text-red-400 font-bold">user@portfolio:</span>
+                  <span className="text-red-400 font-bold text-sm sm:text-base">user@portfolio:</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-blue-400">{t('about.prompt')}</span>
-                    <span className="text-white">$</span>
+                    <span className="text-blue-400 text-sm sm:text-base">{t('about.prompt')}</span>
+                    <span className="text-white text-sm sm:text-base">$</span>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Typed Description */}
+              {/* Typed Description - Visible inmediatamente con tamaño fijo */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.5, delay: 1.2 }}
-                className="text-white leading-relaxed text-sm sm:text-base whitespace-pre-line"
+                initial={{ opacity: 1 }} 
+                animate={{ opacity: 1 }}
+                className="text-white leading-tight text-xs sm:text-sm md:text-base whitespace-pre-line"
+                style={{ height: 'calc(100% - 30px)' }} /* Altura restante después del prompt (reducido) */
               >
-                <span ref={typedRef as React.RefObject<HTMLSpanElement>}></span>
+                {/* El texto aparecerá aquí sin afectar el tamaño del contenedor */}
+                <div className="relative h-full">
+                  <span ref={typedRef as React.RefObject<HTMLSpanElement>}></span>
+                </div>
               </motion.div>
             </div>
-
-            {/* Fixed Images Section at Bottom */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 2 }}
-              className="p-4 bg-gray-900 border-t border-gray-700 flex-shrink-0"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
-                  {/* Imagen de Desarrollo */}
-                  <div className="h-28 sm:h-32 bg-gradient-to-br from-red-950 to-black flex items-center justify-center relative overflow-hidden">
-                    <img src={desarrolloImg} alt="Desarrollo" className="w-full h-full object-contain" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
-                  </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">💻 Desarrollo</h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">Front-end moderno con React, TypeScript y herramientas actuales</p>
-                  </div>
-                </div>
-                
-                <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
-                  {/* Imagen de Lectura */}
-                  <div className="h-28 sm:h-32 bg-gradient-to-br from-gray-900 to-red-900 flex items-center justify-center relative overflow-hidden">
-                    <img src={lecturaImg} alt="Lectura" className="w-full h-full object-contain" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
-                  </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">📚 Lectura</h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">Apasionado por los libros de desarrollo personal y tecnología</p>
-                  </div>
-                </div>
-                
-                <div className="bg-gray-800/50 rounded border border-red-700/30 overflow-hidden hover:border-red-500/50 transition-all duration-300 group">
-                  {/* Imagen de Caminar */}
-                  <div className="h-28 sm:h-32 bg-gradient-to-br from-black to-red-800 flex items-center justify-center relative overflow-hidden">
-                    <img src={caminarImg} alt="Caminar" className="w-full h-full object-contain" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-red-900/10 transition-all"></div>
-                  </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="text-red-400 font-bold text-sm sm:text-base mb-1 sm:mb-2">🚶‍♂️ Caminar</h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">Despeja la mente, estimula la creatividad y mejora la salud mental</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </motion.div>
       </div>
