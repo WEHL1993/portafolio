@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import { Mail, MapPin, MessageCircle } from 'lucide-react';
-import ContactForm from './ContactForm';
+import DirectFormSubmit from './DirectFormSubmit';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
               <h3 className="text-2xl font-semibold text-white mb-4">
                 {t('contact.sendMessage')}
               </h3>
-              <ContactForm />
+              <DirectFormSubmit recipientEmail="wilsoneduardohl@gmail.com" />
             </motion.div>
           </div>
         </motion.div>

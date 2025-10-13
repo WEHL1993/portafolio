@@ -16,7 +16,8 @@ export interface ContactFormData {
 }
 
 // Función de envío de email desactivada
-export const sendContactEmail = async (_formData: ContactFormData): Promise<boolean> => {
+// Esta función permanece para mantener compatibilidad con código existente
+export const sendContactEmail = async (/* formData: ContactFormData */): Promise<boolean> => {
   console.warn('La funcionalidad EmailJS ha sido deshabilitada.');
   console.log('Para enviar correos, usa el componente DirectFormSubmit que utiliza FormSubmit.');
   return false;

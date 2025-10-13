@@ -1,8 +1,10 @@
 /// <reference types="vite/client" />
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// Definición de tipos para variables de entorno de Vite
 interface ImportMetaEnv {
-  // Define aquí tus variables de entorno cuando las necesites
+  readonly VITE_APP_TITLE?: string;
+  // Aquí puedes añadir más variables de entorno cuando las necesites
+  readonly [key: string]: string | undefined;
 }
 
 interface ImportMeta {
