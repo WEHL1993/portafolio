@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,52 +10,19 @@ const AboutMe: React.FC = () => {
     threshold: 0.3,
     triggerOnce: true,
   });
-  
-  // Estado para guardar si estamos en vista móvil
-  const [isMobile, setIsMobile] = useState(false);
 
-  // Efecto para detectar el tamaño de pantalla
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    
-    // Comprobar al iniciar
-    checkIfMobile();
-    
-    // Añadir listener para cambios de tamaño
-    window.addEventListener('resize', checkIfMobile);
-    
-    // Limpiar listener al desmontar
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
+  // Usamos el texto completo de las traducciones
+  const aboutFullText = t('about.description');
 
-  // Ajustar el texto según el tamaño de pantalla
-  const getAboutText = () => {
-    if (isMobile) {
-      const fullText = t('about.description');
-      // En móviles mostramos una versión más corta y optimizada
-      const paragraphs = fullText.split('\n\n');
-      // Acortamos el primer párrafo para que quepa mejor en móviles
-      const mobileText = paragraphs[0].split('.').slice(0, 3).join('.') + '.';
-      return mobileText;
-    }
-    return t('about.description');
-  };
-
+  // Configuramos la animación de escritura
   const typedRef = useTyped({
-    strings: [getAboutText()],
-    typeSpeed: 2, // Velocidad máxima (2ms entre caracteres)
-    backSpeed: 0, // Sin retroceso
+    strings: [aboutFullText],
+    typeSpeed: 1, // Velocidad máxima de escritura
+    startDelay: 100,
     showCursor: true,
     cursorChar: '_',
-    // Configuración adicional para mejorar el rendimiento
     loop: false,
-    startDelay: 0,
-    // Función al completar la animación
-    onComplete: () => {
-      // No hacer nada al completar, el texto quedará visible
-    }
+    backSpeed: 0
   });
 
   return (
@@ -97,40 +64,40 @@ const AboutMe: React.FC = () => {
               </div>
             </div>
 
-            {/* Terminal Content - Text Area 100% adaptativa */}
+            {/* Terminal Content - Text Area adaptativa con Tailwind */}
             <div 
-              className={`${isMobile ? 'p-2.5' : 'p-3 md:p-6'} bg-black text-green-400 font-mono`}
-              style={{
-                height: 'auto',
-                minHeight: isMobile ? '180px' : '380px', /* Altura reducida para móviles */
-                maxHeight: isMobile ? '230px' : 'none', /* Limitar altura en móviles */
-              }}
+              id="terminal-content"
+              className="p-1.5 max-[359px]:p-1.5 min-[360px]:p-2 min-[414px]:p-2.5 sm:p-3 md:p-6 bg-black text-green-400 font-mono h-auto w-full max-w-full overflow-visible"
             >
               {/* Prompt */}
-              <div className="mb-2">
+              <div className="mb-1 max-[359px]:mb-0.5 min-[360px]:mb-1 min-[414px]:mb-1 sm:mb-2">
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-0.5 sm:gap-2"
+                  className="flex flex-col max-[359px]:flex-col min-[360px]:flex-row items-start sm:items-center gap-0.5 sm:gap-2"
                 >
-                  <span className="text-red-400 font-bold text-xs sm:text-sm">user@portfolio:</span>
-                  <div className="flex items-center gap-1 sm:gap-2">
-                    <span className="text-blue-400 text-xs sm:text-sm">{t('about.prompt')}</span>
-                    <span className="text-white text-xs sm:text-sm">$</span>
+                  <span className="text-red-400 font-bold max-[359px]:text-[0.65rem] min-[360px]:text-[0.7rem] min-[414px]:text-xs sm:text-sm">user@portfolio:</span>
+                  <div className="flex items-center gap-0.5 sm:gap-2">
+                    <span className="text-blue-400 max-[359px]:text-[0.65rem] min-[360px]:text-[0.7rem] min-[414px]:text-xs sm:text-sm">{t('about.prompt')}</span>
+                    <span className="text-white max-[359px]:text-[0.65rem] min-[360px]:text-[0.7rem] min-[414px]:text-xs sm:text-sm">$</span>
                   </div>
                 </motion.div>
               </div>
 
-              {/* Typed Description - Adaptativo para todos los dispositivos */}
+              {/* Texto directo sin animación de escritura - Versión simplificada para evitar repeticiones */}
               <motion.div
-                initial={{ opacity: 1 }} 
-                animate={{ opacity: 1 }}
-                className={`text-white ${isMobile ? 'leading-snug' : 'leading-tight'} text-xs sm:text-sm md:text-base whitespace-pre-line`}
+                initial={{ opacity: 0 }} 
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="text-white leading-tight whitespace-pre-line"
               >
-                {/* El texto aparecerá aquí y ajustará la altura del contenedor */}
+                {/* Una única versión del texto que se ajusta según el tamaño de pantalla */}
                 <div className="relative">
-                  <span ref={typedRef as React.RefObject<HTMLSpanElement>}></span>
+                  <span 
+                    ref={typedRef as React.RefObject<HTMLSpanElement>}
+                    className="max-[359px]:text-[0.65rem] min-[360px]:text-[0.7rem] min-[414px]:text-xs sm:text-sm md:text-base max-[359px]:leading-tight min-[360px]:leading-tight"
+                  ></span>
                 </div>
               </motion.div>
             </div>
