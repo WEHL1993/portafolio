@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, FileText } from 'lucide-react';
 import { 
   SiHtml5, 
   SiCss3, 
@@ -18,6 +18,7 @@ import {
 import HojaDeVida from '../assets/proyectos/Hoja-de-Vida.png';
 import Formulario from '../assets/proyectos/Formulario.png';
 import DisenoResponsivo from '../assets/proyectos/Diseño-Responsivo.png';
+import Glosario from '../assets/proyectos/Glosario.png';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -32,6 +33,8 @@ const Projects: React.FC = () => {
     technologies: string[];
     repoUrl: string;
     demoUrl: string;
+    hasGlossary?: boolean;
+    glossaryUrl?: string;
   }>;
 
   const getIconColor = (skillName: string): string => {
@@ -129,6 +132,12 @@ const Projects: React.FC = () => {
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
+                    ) : project.title === "Glosario de Programación" || project.title === "Programming Glossary" ? (
+                      <img 
+                        src={Glosario} 
+                        alt={project.title}
+                        className="w-full h-full object-contain"
+                      />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center text-white text-6xl opacity-20">
                         {project.title.charAt(0)}
@@ -185,6 +194,16 @@ const Projects: React.FC = () => {
                         <ExternalLink size={16} className="inline-block" />
                         <span>{t('projects.viewDemo')}</span>
                       </a>
+
+                      {project.hasGlossary && (
+                        <a
+                          href="/glosario"
+                          className="flex items-center gap-1 px-4 py-2 bg-green-700 text-white text-sm rounded hover:bg-green-600 transition-colors"
+                        >
+                          <FileText size={16} className="inline-block" />
+                          <span>{t('projects.viewGlossary')}</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

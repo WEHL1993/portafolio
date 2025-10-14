@@ -1,0 +1,272 @@
+# Glosario de Términos de Programación
+
+## A
+
+**API (Application Programming Interface)**
+Conjunto de reglas y protocolos que permiten que diferentes aplicaciones se comuniquen entre sí.
+
+**Algoritmo**
+Secuencia de instrucciones o reglas definidas y ordenadas que se siguen para resolver un problema o realizar una tarea.
+
+**Angular**
+Framework de desarrollo para JavaScript mantenido por Google, diseñado para crear aplicaciones web de una sola página.
+
+## B
+
+**Backend**
+Parte de una aplicación web que se ejecuta en el servidor y que el usuario no puede ver directamente.
+
+**Bootstrap**
+Framework de CSS desarrollado por Twitter que facilita el diseño web responsive y la creación de interfaces.
+
+**Bug**
+Error o fallo en un programa que produce resultados incorrectos o comportamientos inesperados.
+
+## C
+
+**CSS (Cascading Style Sheets)**
+Lenguaje utilizado para describir la presentación visual de un documento HTML.
+
+**Compilador**
+Programa que traduce código fuente escrito en un lenguaje de programación a otro lenguaje, generalmente código máquina.
+
+**Cloud Computing**
+Uso de servidores remotos en internet para almacenar, administrar y procesar datos en lugar de usar un servidor local.
+
+## D
+
+**DOM (Document Object Model)**
+Interfaz de programación para documentos HTML y XML que define la estructura lógica del documento y la forma en que se accede y manipula.
+
+**Depuración (Debugging)**
+Proceso de identificar y eliminar errores de un software.
+
+**DevOps**
+Conjunto de prácticas que combina desarrollo de software y operaciones de TI para acortar el ciclo de vida del desarrollo.
+
+## E
+
+**Express.js**
+Framework minimalista de Node.js que facilita la creación de servidores web y APIs.
+
+**ES6 (ECMAScript 2015)**
+Versión del estándar ECMAScript que introdujo importantes actualizaciones al lenguaje JavaScript.
+
+**Endpoint**
+URL específica en una API que responde a una petición.
+
+## F
+
+**Framework**
+Estructura conceptual y tecnológica de soporte definido, con artefactos o módulos de software que facilitan el desarrollo de software.
+
+**Frontend**
+Parte de una aplicación web con la que los usuarios interactúan directamente.
+
+**Full-stack**
+Desarrollador que tiene conocimientos tanto de frontend como de backend.
+
+## G
+
+**Git**
+Sistema de control de versiones distribuido para el seguimiento de cambios en el código fuente.
+
+**GitHub**
+Plataforma basada en la nube que aloja repositorios Git y ofrece herramientas de colaboración para desarrolladores.
+
+**GraphQL**
+Lenguaje de consulta y manipulación de datos para APIs, y un entorno de ejecución para cumplir las consultas con datos existentes.
+
+## H
+
+**HTML (HyperText Markup Language)**
+Lenguaje de marcado estándar para la creación de páginas web.
+
+**HTTP (HyperText Transfer Protocol)**
+Protocolo de comunicación que permite la transferencia de información en la World Wide Web.
+
+**Hosting**
+Servicio que permite a los usuarios publicar un sitio web o aplicación web en Internet.
+
+## I
+
+**IDE (Integrated Development Environment)**
+Software que proporciona herramientas para facilitar el desarrollo de aplicaciones.
+
+**IIFE (Immediately Invoked Function Expression)**
+Función en JavaScript que se ejecuta tan pronto como se define.
+
+**Internet of Things (IoT)**
+Red de objetos físicos que utilizan sensores y APIs para conectarse e intercambiar datos por internet.
+
+## J
+
+**JavaScript**
+Lenguaje de programación interpretado, orientado a objetos, utilizado principalmente en el lado del cliente web.
+
+**JSON (JavaScript Object Notation)**
+Formato de texto ligero para el intercambio de datos.
+
+**JWT (JSON Web Token)**
+Estándar abierto basado en JSON para crear tokens de acceso.
+
+## K
+
+**Kernel**
+Núcleo de un sistema operativo que facilita la comunicación entre el hardware y el software.
+
+**Key-Value Store**
+Tipo de base de datos no relacional que almacena datos como colecciones de pares clave-valor.
+
+## L
+
+**Library (Biblioteca)**
+Conjunto de implementaciones funcionales, codificadas en un lenguaje de programación, que ofrece una interfaz bien definida para la funcionalidad que se invoca.
+
+**Localhost**
+Nombre de host que se refiere al dispositivo local que se está utilizando.
+
+**Linux**
+Sistema operativo de código abierto basado en Unix.
+
+## M
+
+**Middleware**
+Software que actúa como un puente entre un sistema operativo o base de datos y las aplicaciones.
+
+**MongoDB**
+Sistema de base de datos NoSQL orientado a documentos.
+
+**MVC (Model-View-Controller)**
+Patrón de arquitectura de software que separa los datos, la interfaz de usuario y la lógica de control.
+
+## N
+
+**Node.js**
+Entorno de ejecución para JavaScript construido con el motor V8 de Chrome.
+
+**NoSQL**
+Tipo de base de datos que no utiliza el esquema tabular de filas y columnas que se encuentra en las bases de datos relacionales.
+
+**NPM (Node Package Manager)**
+Gestor de paquetes por defecto para Node.js.
+
+## O
+
+**OOP (Object-Oriented Programming)**
+Paradigma de programación basado en el concepto de "objetos", que pueden contener datos y código.
+
+**OAuth**
+Protocolo de autorización abierto que permite acceso seguro a los recursos de un usuario.
+
+**Open Source**
+Software cuyo código fuente se publica y se hace disponible para el público, permitiendo a cualquiera ver, modificar y distribuir el código.
+
+## P
+
+**Python**
+Lenguaje de programación interpretado, de alto nivel y propósito general.
+
+**PWA (Progressive Web App)**
+Aplicación web que usa tecnologías web modernas para ofrecer una experiencia similar a una aplicación nativa.
+
+**Proxy**
+Servidor que actúa como intermediario para las solicitudes de clientes que buscan recursos de otros servidores.
+
+## Q
+
+**Query**
+Consulta o solicitud de datos de una base de datos o sistema de información.
+
+**QA (Quality Assurance)**
+Conjunto de actividades destinadas a garantizar que los productos cumplan con los requisitos de calidad.
+
+## R
+
+**React**
+Biblioteca de JavaScript para construir interfaces de usuario.
+
+**REST (Representational State Transfer)**
+Estilo de arquitectura para sistemas distribuidos, como la World Wide Web.
+
+**Repository**
+Ubicación centralizada donde se almacena, organiza, mantiene y difunde información digital.
+
+## S
+
+**SQL (Structured Query Language)**
+Lenguaje de programación diseñado para administrar sistemas de bases de datos relacionales.
+
+**SPA (Single Page Application)**
+Aplicación web que interactúa con el usuario reescribiendo la página actual, en lugar de cargar páginas completas nuevas.
+
+**Sass (Syntactically Awesome Style Sheets)**
+Preprocesador de CSS que añade características como variables, anidamiento y mixins.
+
+## T
+
+**TypeScript**
+Superconjunto de JavaScript que añade tipado estático opcional y otras características.
+
+**Terminal**
+Interfaz de texto que permite a los usuarios interactuar con el sistema operativo mediante comandos.
+
+**TDD (Test-Driven Development)**
+Proceso de desarrollo de software que se basa en repetir un ciclo de desarrollo muy corto donde primero se escriben pruebas.
+
+## U
+
+**UI (User Interface)**
+Todo lo que el usuario puede ver e interactuar en una aplicación o sitio web.
+
+**URL (Uniform Resource Locator)**
+Dirección específica que se asigna a cada recurso disponible en la web.
+
+**UX (User Experience)**
+Experiencia completa que tiene un usuario al interactuar con un producto o servicio.
+
+## V
+
+**Version Control System**
+Sistema que registra los cambios realizados en un archivo o conjunto de archivos a lo largo del tiempo.
+
+**Virtual DOM**
+Concepto de programación donde una representación ideal o "virtual" de la UI se mantiene en memoria y se sincroniza con el DOM "real".
+
+**Vue.js**
+Framework progresivo para construir interfaces de usuario.
+
+## W
+
+**Webpack**
+Empaquetador de módulos estático para aplicaciones JavaScript modernas.
+
+**WebSocket**
+Protocolo de comunicación que proporciona canales de comunicación bidireccional sobre una única conexión TCP.
+
+**WWW (World Wide Web)**
+Sistema de distribución de documentos de hipertexto interconectados y accesibles a través de Internet.
+
+## X
+
+**XML (eXtensible Markup Language)**
+Lenguaje de marcado similar a HTML pero diseñado para almacenar y transportar datos.
+
+**XSS (Cross-Site Scripting)**
+Vulnerabilidad de seguridad que permite a los atacantes inyectar scripts maliciosos en páginas web vistas por otros usuarios.
+
+## Y
+
+**YAML (YAML Ain't Markup Language)**
+Formato de serialización de datos legible por humanos.
+
+**Yarn**
+Gestor de paquetes para JavaScript, alternativo a NPM.
+
+## Z
+
+**Zero-day Vulnerability**
+Vulnerabilidad de seguridad informática que es desconocida para los afectados o que no tiene parche disponible.
+
+**ZIP**
+Formato de archivo comprimido que permite reducir el tamaño de uno o más archivos.

@@ -16,10 +16,18 @@
     "prompt": "C: portfolio/wilson-hernandez",
     "description": "👋 Hello! I'm Wilson Hernández, a developer in training passionate about technology and innovation. I have solid knowledge in programming languages like C#, HTML, CSS, JavaScript, and TypeScript, plus experience developing applications with Node.js and modern frameworks like React, Angular, Vue.js, and Express.js. I handle relational databases like SQL Server, MySQL, and Oracle, as well as NoSQL databases like MongoDB, which allows me to design and build complete solutions from backend to frontend. I consider myself a curious, self-taught person focused on continuous improvement. My goal is to become a versatile programmer, capable of developing scalable projects with real impact.\n\nI am characterized by being self-taught, disciplined, and passionate about reading. I constantly seek to learn new technologies and apply what I learn in real projects.\n\nWhen I disconnect from the keyboard, I like to go for walks and enjoy the fresh air. I believe that walking not only clears the mind, but also stimulates creativity and improves mental health, something essential to stay inspired day by day."
   },
+  "glossary": {
+    "title": "Programming Glossary",
+    "filter": "Filter by letter",
+    "noResults": "No terms found for this letter",
+    "all": "All",
+    "close": "Close glossary"
+  },
   "projects": {
     "title": "Projects",
     "viewRepository": "View Repository",
     "viewDemo": "View Demo",
+    "viewGlossary": "View Glossary",
     "items": [
       {
         "title": "Hoja de vida",
@@ -41,6 +49,15 @@
         "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
         "repoUrl": "https://github.com/WEHL1993/diseno-responsive",
         "demoUrl": "https://eclectic-sprinkles-4c7250.netlify.app/"
+      },
+      {
+        "title": "Programming Glossary",
+        "description": "Comprehensive glossary of programming terms for quick reference",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "React", "TypeScript"],
+        "repoUrl": "https://github.com/WEHL1993/portafolio",
+        "demoUrl": "/",
+        "hasGlossary": true,
+        "glossaryUrl": "/glosario.txt"
       }
     ]
   },

@@ -1,0 +1,306 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
+import useSmoothScroll from '../hooks/useSmoothScroll';
+
+interface GlossaryItem {
+  term: string;
+  definition: string;
+  letter: string;
+}
+
+interface GlossaryByLetter {
+  [key: string]: GlossaryItem[];
+}
+
+const Glossary: React.FC = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [glossaryData, setGlossaryData] = useState<GlossaryByLetter>({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedLetter, setSelectedLetter] = useState<string>('all');
+  const [letters, setLetters] = useState<string[]>([]);
+  const [filteredItems, setFilteredItems] = useState<GlossaryItem[]>([]);
+  
+  // Inicializar scroll suave
+  useSmoothScroll();
+  
+  // Estado para controlar la animación de salida
+  const [isExiting, setIsExiting] = useState(false);
+  
+  // Función para salir del glosario
+  const handleClose = () => {
+    // Activar animación de salida
+    setIsExiting(true);
+    
+    // Navegar después de que termine la animación
+    setTimeout(() => {
+      navigate('/#projects');
+    }, 300); // Duración de la animación
+  };
+
+  // Función para filtrar los elementos según la letra seleccionada
+  const updateFilteredItems = (data: GlossaryByLetter, letter: string) => {
+    if (letter === 'all') {
+      // Si es 'all', mostrar todos los términos
+      const allItems: GlossaryItem[] = [];
+      Object.values(data).forEach(items => {
+        allItems.push(...items);
+      });
+      setFilteredItems(allItems.sort((a, b) => a.term.localeCompare(b.term)));
+    } else {
+      // Si es una letra específica, mostrar solo esos términos
+      setFilteredItems(data[letter] || []);
+    }
+  };
+
+  // Efecto para cargar los datos del glosario
+  useEffect(() => {
+    const fetchGlossary = async () => {
+      try {
+        const response = await fetch('/glosario.txt');
+        const text = await response.text();
+        
+        // Procesar el texto del glosario
+        const lines = text.split('\n');
+        const glossaryByLetter: GlossaryByLetter = {};
+        // Añadir sección para caracteres especiales
+        glossaryByLetter['#'] = [];
+        
+        let currentLetter = '';
+        let currentTerm = '';
+        let currentDefinition = '';
+        
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          
+          // Detectar secciones de letras (## A, ## B, etc.)
+          if (line.startsWith('## ')) {
+            currentLetter = line.substring(3).trim();
+            glossaryByLetter[currentLetter] = glossaryByLetter[currentLetter] || [];
+          } 
+          // Detectar términos (empiezan con **)
+          else if (line.startsWith('**')) {
+            // Si ya había un término anterior, guardarlo
+            if (currentTerm && currentDefinition) {
+              glossaryByLetter[currentLetter].push({
+                term: currentTerm,
+                definition: currentDefinition.trim(),
+                letter: currentLetter
+              });
+            }
+            
+            // Extraer el nuevo término
+            currentTerm = line.replace(/^\*\*|\*\*$/g, '');
+            currentDefinition = '';
+          } 
+          // Agregar líneas a la definición actual
+          else if (currentTerm && line !== '') {
+            currentDefinition += currentDefinition ? ' ' + line : line;
+          }
+        }
+        
+        // No olvidar guardar el último término
+        if (currentTerm && currentDefinition && currentLetter) {
+          glossaryByLetter[currentLetter].push({
+            term: currentTerm,
+            definition: currentDefinition.trim(),
+            letter: currentLetter
+          });
+        }
+        
+        setGlossaryData(glossaryByLetter);
+        
+        // Preparar las letras para el filtro, con '#' al principio y 'all' que no es parte del glossary
+        const sortedLetters = Object.keys(glossaryByLetter).filter(letter => letter !== '#').sort();
+        setLetters(['#', ...sortedLetters]);
+        
+        // Actualizar el filtro
+        updateFilteredItems(glossaryByLetter, selectedLetter);
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching glossary data:', error);
+        setIsLoading(false);
+      }
+    };
+    
+    fetchGlossary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  // Efecto para actualizar los elementos filtrados cuando cambia la letra seleccionada
+  useEffect(() => {
+    if (!isLoading) {
+      updateFilteredItems(glossaryData, selectedLetter);
+    }
+  }, [selectedLetter, glossaryData, isLoading]);
+  
+  // Manejar clic en una letra
+  const handleLetterClick = (letter: string) => {
+    setSelectedLetter(letter);
+    
+    // Si no es "all", hacer scroll suave al ancla de la letra
+    if (letter !== 'all') {
+      const element = document.getElementById(`letter-${letter}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Si es "all", scroll al inicio del glosario
+      const glossaryElement = document.getElementById('glossary');
+      if (glossaryElement) {
+        glossaryElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+  
+  return (
+    <motion.section 
+      id="glossary" 
+      className="w-full py-20 bg-gradient-to-br from-black to-red-950 min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isExiting ? 0 : 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="container mx-auto px-4 max-w-5xl relative">
+        {/* Botón X para cerrar */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+          onClick={handleClose}
+          className="fixed top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
+          aria-label={t('glossary.close')}
+          title={t('glossary.close')}
+        >
+          <X size={24} />
+        </motion.button>
+        
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-bold text-center mb-10 text-white"
+        >
+          {t('glossary.title')}
+        </motion.h1>
+        
+        {/* Filtro alfabético */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 sticky top-20 z-10 bg-black/80 backdrop-blur-md p-4 rounded-lg"
+        >
+          {/* Botón para mostrar todos */}
+          <button
+            onClick={() => handleLetterClick('all')}
+            className={`px-4 h-8 md:h-10 flex items-center justify-center rounded-md ${
+              selectedLetter === 'all'
+                ? 'bg-red-600 text-white font-bold'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            } transition-colors`}
+          >
+            {t('glossary.all')}
+          </button>
+          
+          {/* Botones para cada letra */}
+          {letters.map((letter) => (
+            <button
+              key={letter}
+              onClick={() => handleLetterClick(letter)}
+              className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full ${
+                selectedLetter === letter
+                  ? 'bg-red-600 text-white font-bold'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              } transition-colors`}
+            >
+              {letter}
+            </button>
+          ))}
+        </motion.div>
+        
+        {/* Contenido del glosario */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {selectedLetter === 'all' ? (
+              // Mostrar todas las letras cuando se selecciona "all"
+              letters.map((letter) => (
+                <motion.div
+                  key={letter}
+                  id={`letter-${letter}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h2 className="text-3xl font-bold text-red-500 mb-4 border-b border-red-500/30 pb-2">
+                    {letter}
+                  </h2>
+                  <div className="grid gap-6">
+                    {glossaryData[letter]?.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 * (index % 5) }} // Limitar el delay para no esperar demasiado
+                        className="bg-gray-900/80 rounded-lg p-6 border border-red-700/20 hover:border-red-500/40 transition-all duration-300"
+                      >
+                        <h3 className="text-xl text-white font-semibold mb-2">{item.term}</h3>
+                        <p className="text-gray-300 leading-relaxed">{item.definition}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              // Mostrar solo la letra seleccionada
+              <motion.div
+                key={selectedLetter}
+                id={`letter-${selectedLetter}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <h2 className="text-3xl font-bold text-red-500 mb-4 border-b border-red-500/30 pb-2">
+                  {selectedLetter}
+                </h2>
+                
+                {filteredItems.length === 0 ? (
+                  <div className="text-center p-8 text-gray-400">
+                    {t('glossary.noResults')}
+                  </div>
+                ) : (
+                  <div className="grid gap-6">
+                    {filteredItems.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 * index }}
+                        className="bg-gray-900/80 rounded-lg p-6 border border-red-700/20 hover:border-red-500/40 transition-all duration-300"
+                      >
+                        <h3 className="text-xl text-white font-semibold mb-2">{item.term}</h3>
+                        <p className="text-gray-300 leading-relaxed">{item.definition}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </div>
+        )}
+      </div>
+    </motion.section>
+  );
+};
+
+export default Glossary;

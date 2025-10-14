@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import AboutMe from '../components/AboutMe';
@@ -9,6 +9,18 @@ import ContactFormSubmit from '../components/ContactFormSubmit';
 import Footer from '../components/Footer';
 
 const Layout: React.FC = () => {
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Espera breve para asegurar que el DOM esté listo
+      }
+    }
+  }, []);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-black">
       <Header />
