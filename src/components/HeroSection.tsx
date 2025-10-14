@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
   const nameRef = useBaffle(t('hero.name'), { characters: '█▓▒░/<>', speed: 75 });
 
   return (
-    <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 relative overflow-hidden">
+    <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 relative overflow-hidden py-16 sm:py-0">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-red-900/20"></div>
@@ -31,17 +31,17 @@ const HeroSection: React.FC = () => {
             className="flex justify-center mb-8"
           >
             <div className="relative">
-              <div className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 overflow-hidden rounded-full border-4 border-red-400 shadow-2xl">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 overflow-hidden rounded-full border-4 border-red-400 shadow-2xl">
                 <img 
                   src={formalImage} 
                   alt="Wilson Hernández" 
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center scale-105"
                 />
               </div>
               <motion.div
                 className="absolute inset-0 rounded-full border-4 border-red-300"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
               />
             </div>
           </motion.div>
@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
           <div className="space-y-4">
             <h1 
               ref={nameRef as React.RefObject<HTMLHeadingElement>}
-              className="text-5xl md:text-7xl font-bold text-white mb-4 font-mono"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-3 md:mb-4 font-mono"
             >
               {t('hero.name')}
             </h1>
@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.5 }}
-              className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mt-8"
+              className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 mt-6 md:mt-8"
             >
               <motion.a
                 href="mailto:wilsoneduardohl@gmail.com"
