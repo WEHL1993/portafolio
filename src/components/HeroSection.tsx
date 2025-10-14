@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useBaffle } from '../hooks/useBaffle';
 import { Linkedin, Github, Mail, Download } from 'lucide-react';
+import formalImage from '../assets/imagenFormal.jpeg';
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
@@ -30,13 +31,17 @@ const HeroSection: React.FC = () => {
             className="flex justify-center mb-8"
           >
             <div className="relative">
-              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white text-6xl font-bold border-4 border-red-400 shadow-2xl">
-                WH
+              <div className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 overflow-hidden rounded-full border-4 border-red-400 shadow-2xl">
+                <img 
+                  src={formalImage} 
+                  alt="Wilson Hernández" 
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
               <motion.div
                 className="absolute inset-0 rounded-full border-4 border-red-300"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
               />
             </div>
           </motion.div>
