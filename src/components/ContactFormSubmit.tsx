@@ -87,7 +87,7 @@ const ContactFormSubmit: React.FC = () => {
                           LinkedIn
                         </motion.a>
                         <motion.a 
-                          href="https://github.com/wilson-hernandez" 
+                          href="https://github.com/WEHL1993" 
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.1, y: -3 }}

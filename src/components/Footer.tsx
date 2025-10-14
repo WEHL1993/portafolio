@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               <Github size={22} />
             </motion.a>
             <motion.a
-              href="https://twitter.com/wilson_dev"
+              href="https://x.com/WilsonEdua66971"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sky-400 hover:text-sky-300 transition-colors"
