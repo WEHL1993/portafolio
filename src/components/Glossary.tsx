@@ -37,7 +37,7 @@ const Glossary: React.FC = () => {
     
     // Navegar después de que termine la animación
     setTimeout(() => {
-      navigate('/#projects');
+      navigate('/#projects', { replace: true });
     }, 300); // Duración de la animación
   };
 

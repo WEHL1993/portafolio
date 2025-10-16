@@ -10,7 +10,7 @@ const Hooks: React.FC = () => {
   const handleClose = () => {
     setIsExiting(true);
     setTimeout(() => {
-      navigate('/#projects');
+      navigate('/#projects', { replace: true });
     }, 300);
   };
 
