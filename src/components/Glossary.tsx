@@ -210,6 +210,8 @@ const Glossary: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
           onClick={handleClose}
+          tabIndex={-1}
+          onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
           className="fixed top-14 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
           aria-label={t('glossary.close')}
           title={t('glossary.close')}

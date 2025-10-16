@@ -28,7 +28,9 @@ const Hooks: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.15 }}
-        onClick={handleClose}
+  onClick={handleClose}
+  tabIndex={-1}
+  onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
         className="fixed top-14 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
         aria-label="Cerrar Hooks"
         title="Cerrar Hooks"
