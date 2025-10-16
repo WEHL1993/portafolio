@@ -37,15 +37,26 @@ const Glossary: React.FC = () => {
     
     // Navegar después de que termine la animación
     setTimeout(() => {
-      // Si hay historial previo, volver atrás; si no, ir a /#projects reemplazando la entrada
-      try {
-        if (window.history.length > 1) {
-          navigate(-1);
-        } else {
+      // En móviles preferimos reemplazar la URL por /#projects y hacer scroll al ancla
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+        try {
+          window.history.replaceState(null, '', '/#projects');
+          const el = document.getElementById('projects');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } catch {
           navigate('/#projects', { replace: true });
         }
-      } catch {
-        navigate('/#projects', { replace: true });
+      } else {
+        // Si hay historial previo, volver atrás; si no, ir a /#projects reemplazando la entrada
+        try {
+          if (window.history.length > 1) {
+            navigate(-1);
+          } else {
+            navigate('/#projects', { replace: true });
+          }
+        } catch {
+          navigate('/#projects', { replace: true });
+        }
       }
     }, 300); // Duración de la animación
   };

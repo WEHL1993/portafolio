@@ -83,7 +83,7 @@ const AboutMe: React.FC = () => {
             {/* Terminal Content - Tamaño fijo responsive con scroll interno */}
             <div 
               id="terminal-content"
-              className="p-1.5 max-[359px]:p-1.5 min-[360px]:p-2 min-[414px]:p-2.5 sm:p-3 md:p-6 bg-black text-green-400 font-mono w-full max-w-full overflow-auto h-[90vh] md:overflow-auto md:h-72 lg:h-80"
+              className="p-1.5 max-[359px]:p-1.5 min-[360px]:p-2 min-[414px]:p-2.5 sm:p-3 md:p-6 bg-black text-green-400 font-mono w-full max-w-full overflow-auto h-[65vh] md:overflow-auto md:h-72 lg:h-80"
             >
               {/* Prompt */}
               <div className="mb-1 max-[359px]:mb-0.5 min-[360px]:mb-1 min-[414px]:mb-1 sm:mb-2">

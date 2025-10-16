@@ -10,14 +10,24 @@ const Hooks: React.FC = () => {
   const handleClose = () => {
     setIsExiting(true);
     setTimeout(() => {
-      try {
-        if (window.history.length > 1) {
-          navigate(-1);
-        } else {
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+        try {
+          window.history.replaceState(null, '', '/#projects');
+          const el = document.getElementById('projects');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } catch {
           navigate('/#projects', { replace: true });
         }
-      } catch {
-        navigate('/#projects', { replace: true });
+      } else {
+        try {
+          if (window.history.length > 1) {
+            navigate(-1);
+          } else {
+            navigate('/#projects', { replace: true });
+          }
+        } catch {
+          navigate('/#projects', { replace: true });
+        }
       }
     }, 300);
   };
