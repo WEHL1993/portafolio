@@ -37,7 +37,16 @@ const Glossary: React.FC = () => {
     
     // Navegar después de que termine la animación
     setTimeout(() => {
-      navigate('/#projects', { replace: true });
+      // Si hay historial previo, volver atrás; si no, ir a /#projects reemplazando la entrada
+      try {
+        if (window.history.length > 1) {
+          navigate(-1);
+        } else {
+          navigate('/#projects', { replace: true });
+        }
+      } catch {
+        navigate('/#projects', { replace: true });
+      }
     }, 300); // Duración de la animación
   };
 

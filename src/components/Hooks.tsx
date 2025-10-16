@@ -10,7 +10,15 @@ const Hooks: React.FC = () => {
   const handleClose = () => {
     setIsExiting(true);
     setTimeout(() => {
-      navigate('/#projects', { replace: true });
+      try {
+        if (window.history.length > 1) {
+          navigate(-1);
+        } else {
+          navigate('/#projects', { replace: true });
+        }
+      } catch {
+        navigate('/#projects', { replace: true });
+      }
     }, 300);
   };
 
