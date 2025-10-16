@@ -157,6 +157,22 @@ const Glossary: React.FC = () => {
       updateFilteredItems(glossaryData, selectedLetter);
     }
   }, [selectedLetter, glossaryData, isLoading]);
+
+  // Forzar al cargar la página que se muestre el encabezado del glosario
+  // (evita que en despliegues como Netlify la vista quede posicionada en una letra)
+  useEffect(() => {
+    // Ejecutar después de un pequeño retardo para asegurar que el DOM esté listo
+    const t = setTimeout(() => {
+      setSelectedLetter('all');
+      const el = document.getElementById('glossary');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 120);
+
+    return () => clearTimeout(t);
+    // Queremos que esto sólo corra al montar
+  }, []);
   
   // Manejar clic en una letra
   const handleLetterClick = (letter: string) => {
@@ -187,14 +203,14 @@ const Glossary: React.FC = () => {
     >
       <div className="container mx-auto px-4 max-w-5xl relative">
         {/* Botón X para cerrar */}
-        <motion.button
+  <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
           onClick={handleClose}
-          className="fixed top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
+          className="fixed top-14 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
           aria-label={t('glossary.close')}
           title={t('glossary.close')}
         >

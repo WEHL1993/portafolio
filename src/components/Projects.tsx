@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, Github, FileText, BookOpen } from 'lucide-react';
+import { ExternalLink, Github, FileText, BookOpen, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { 
   SiHtml5, 
@@ -20,6 +20,7 @@ import HojaDeVida from '../assets/proyectos/Hoja-de-Vida.png';
 import Formulario from '../assets/proyectos/Formulario.png';
 import DisenoResponsivo from '../assets/proyectos/Diseño-Responsivo.png';
 import GlosaryImg from '../assets/Glosary.png';
+import HooksImg from '../assets/proyectos/Hooks.png';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -135,6 +136,12 @@ const Projects: React.FC = () => {
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
+                    ) : project.hasHooks ? (
+                      <img 
+                        src={HooksImg}
+                        alt={project.title}
+                        className="w-full h-full object-contain"
+                      />
                     ) : project.title === "Glosario de Programación" || project.title === "Programming Glossary" ? (
                       <img 
                         src={GlosaryImg} 
@@ -179,7 +186,11 @@ const Projects: React.FC = () => {
                     ) : (
                       <div className="flex items-center justify-center mb-4">
                         <div className="flex flex-col items-center text-gray-200">
-                          <BookOpen className="w-10 h-10 text-gray-200" />
+                          {project.hasHooks ? (
+                            <Search className="w-10 h-10 text-gray-200" />
+                          ) : (
+                            <BookOpen className="w-10 h-10 text-gray-200" />
+                          )}
                           <span className="text-xs text-gray-400 mt-1">{project.hasHooks ? 'Hooks' : 'Glosario'}</span>
                         </div>
                       </div>
@@ -187,7 +198,7 @@ const Projects: React.FC = () => {
                     
                     {/* Project Links */}
                     <div className="flex justify-center gap-3 pt-3 border-t border-gray-800">
-                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && project.repoUrl && (
+                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && !project.hasHooks && project.repoUrl && (
                         <a
                           href={project.repoUrl}
                           target="_blank"
@@ -199,7 +210,7 @@ const Projects: React.FC = () => {
                         </a>
                       )}
 
-                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && project.demoUrl && (
+                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && !project.hasHooks && project.demoUrl && (
                         <a
                           href={project.demoUrl}
                           target="_blank"
@@ -226,7 +237,7 @@ const Projects: React.FC = () => {
                           to={project.hooksUrl || '/hooks'}
                           className="flex items-center gap-1 px-4 py-2 bg-indigo-700 text-white text-sm rounded hover:bg-indigo-600 transition-colors"
                         >
-                          <BookOpen size={16} className="inline-block" />
+                          <Search size={16} className="inline-block" />
                           <span>{t('projects.viewHooks')}</span>
                         </Link>
                       )}
