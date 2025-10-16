@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Github, FileText, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { 
   SiHtml5, 
   SiCss3, 
@@ -35,6 +36,8 @@ const Projects: React.FC = () => {
     demoUrl: string;
     hasGlossary?: boolean;
     glossaryUrl?: string;
+    hasHooks?: boolean;
+    hooksUrl?: string;
   }>;
 
   const getIconColor = (skillName: string): string => {
@@ -157,7 +160,7 @@ const Projects: React.FC = () => {
                     </p>
 
                     {/* Technologies */}
-                    {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" ? (
+                    {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && !project.hasHooks ? (
                       <div className="flex flex-wrap gap-4 mb-4 items-center justify-center">
                         {project.technologies.map((tech, techIndex) => (
                           <motion.div
@@ -177,7 +180,7 @@ const Projects: React.FC = () => {
                       <div className="flex items-center justify-center mb-4">
                         <div className="flex flex-col items-center text-gray-200">
                           <BookOpen className="w-10 h-10 text-gray-200" />
-                          <span className="text-xs text-gray-400 mt-1">Glosario</span>
+                          <span className="text-xs text-gray-400 mt-1">{project.hasHooks ? 'Hooks' : 'Glosario'}</span>
                         </div>
                       </div>
                     )}
@@ -209,13 +212,23 @@ const Projects: React.FC = () => {
                       )}
 
                       {project.hasGlossary && (
-                        <a
-                          href="/glosario"
+                        <Link
+                          to="/glosario"
                           className="flex items-center gap-1 px-4 py-2 bg-green-700 text-white text-sm rounded hover:bg-green-600 transition-colors"
                         >
                           <FileText size={16} className="inline-block" />
                           <span>{t('projects.viewGlossary')}</span>
-                        </a>
+                        </Link>
+                      )}
+
+                      {project.hasHooks && (
+                        <Link
+                          to={project.hooksUrl || '/hooks'}
+                          className="flex items-center gap-1 px-4 py-2 bg-indigo-700 text-white text-sm rounded hover:bg-indigo-600 transition-colors"
+                        >
+                          <BookOpen size={16} className="inline-block" />
+                          <span>{t('projects.viewHooks')}</span>
+                        </Link>
                       )}
                     </div>
                   </div>

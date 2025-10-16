@@ -28,6 +28,7 @@
     "viewRepository": "Ver Repositorio",
     "viewDemo": "Ver Demo",
     "viewGlossary": "Ver Glosario",
+  "viewHooks": "Ver investigación",
     "items": [
       {
         "title": "Hoja de vida",
@@ -58,6 +59,16 @@
         "demoUrl": "/",
         "hasGlossary": true,
         "glossaryUrl": "/glosario.txt"
+      }
+      ,
+      {
+        "title": "Hooks",
+        "description": "Investigación y apuntes sobre Hooks de React: uso, reglas y patrones comunes.",
+        "technologies": ["React", "JavaScript", "TypeScript"],
+        "repoUrl": "",
+        "demoUrl": "/hooks",
+        "hasHooks": true,
+        "hooksUrl": "/hooks"
       }
     ]
   },

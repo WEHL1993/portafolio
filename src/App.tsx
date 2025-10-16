@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import i18n from './i18n';
 import Layout from './layout/layout';
 import GlossaryPage from './pages/GlossaryPage';
+import HooksPage from './pages/HooksPage';
 import './App.css';
 
 const App: React.FC = () => {
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Layout />} />
           <Route path="/glosario" element={<GlossaryPage />} />
+            <Route path="/hooks" element={<HooksPage />} />
         </Routes>
       </Router>
     </I18nextProvider>
