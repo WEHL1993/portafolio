@@ -116,7 +116,7 @@ const HeroSection: React.FC = () => {
               className="mt-8"
             >
               <motion.a
-                href="/src/assets/cv/wilson-hernandez-cv.pdf"
+                href="/wilson-hernandez-cv.pdf"
                 download
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-full shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.5)" }}
