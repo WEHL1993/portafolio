@@ -1,15 +1,30 @@
 # Glosario de Términos de Programación
 
+## #
+
+**3G – Tercera Generación de Redes Móviles**
+3G es una evolución de las redes móviles que permitió navegar por Internet a velocidades decentes desde el celular, además de llamadas, SMS y videollamadas. Fue el punto de partida para el desarrollo de los smartphones modernos.
+
+**4G – Cuarta Generación de Redes Móviles**
+4G es la evolución de 3G, diseñada para ofrecer mayor velocidad, capacidad de red y mejor experiencia en línea, como ver videos en alta calidad, videollamadas estables y navegación muy rápida. LTE es su versión más común.
+
+
 ## A
 
-**API (Application Programming Interface)**
-Conjunto de reglas y protocolos que permiten que diferentes aplicaciones se comuniquen entre sí.
+**ADSL – Asymmetric Digital Subscriber Line ADSL**
+es una tecnología de acceso a Internet mediante línea telefónica, que permite navegar por la red y hablar por teléfono al mismo tiempo. Es “asimétrica” porque ofrece mayor velocidad de descarga que de subida, ideal para navegación y consumo de contenido. Fue muy usada antes de la fibra óptica.
 
-**Algoritmo**
-Secuencia de instrucciones o reglas definidas y ordenadas que se siguen para resolver un problema o realizar una tarea.
+**AJAX**
+AJAX significa Asynchronous JavaScript And XML. Es una tecnología que permite que una página web se comunique con el servidor sin recargarse completa, lo que hace que sea más rápida e interactiva. Con AJAX, podés actualizar solo partes de una página (como comentarios, datos, formularios o listas) sin tener que recargar todo el sitio. Aunque en sus inicios usaba XML, hoy en día es más común usar JSON como formato de datos. AJAX se basa en JavaScript y se apoya en objetos como XMLHttpRequest o fetch() para hacer peticiones al servidor.
 
-**Angular**
-Framework de desarrollo para JavaScript mantenido por Google, diseñado para crear aplicaciones web de una sola página.
+**AMF – Action Message Format**
+AMF es un formato binario desarrollado por Adobe para intercambiar datos entre un cliente (como una app web o Flash) y un servidor. A diferencia de XML o JSON, AMF es más rápido porque codifica los datos en binario, lo que reduce el tamaño y acelera la transmisión. Se usaba mucho en aplicaciones RIA basadas en Flash y Flex para mejorar el rendimiento de comunicación.
+
+**ASP - Active Server Pages**
+En español: Páginas Activas del Servidor, ASP es una tecnología web creada por Microsoft que permite crear páginas web dinámicas, o sea, páginas que cambian su contenido según el usuario o lo que pasa en el servidor.
+
+**ATOM – Atom Syndication Format**
+Atom es un formato basado en XML que se usa para distribuir contenido actualizado regularmente, como noticias, blogs o podcasts, muy parecido al RSS. Su objetivo es permitir que los usuarios se suscriban a contenidos y reciban actualizaciones automáticas en lectores o agregadores. Fue creado como una alternativa más moderna y flexible que RSS, con mejor soporte para metadatos y estandarización.
 
 ## B
 
@@ -22,93 +37,110 @@ Framework de CSS desarrollado por Twitter que facilita el diseño web responsive
 **Bug**
 Error o fallo en un programa que produce resultados incorrectos o comportamientos inesperados.
 
+
 ## C
 
-**CSS (Cascading Style Sheets)**
-Lenguaje utilizado para describir la presentación visual de un documento HTML.
+**CERN**
+Es el laboratorio de física más grande del mundo, ubicado en la frontera entre Suiza y Francia. Fue fundado en 1954 por 12 países europeos. Pero aunque su nombre dice "investigación nuclear", hoy se dedica sobre todo a estudiar física de partículas. O sea, las partículas más pequeñas que forman el universo.
 
-**Compilador**
-Programa que traduce código fuente escrito en un lenguaje de programación a otro lenguaje, generalmente código máquina.
+¿Qué hace el CERN?
 
-**Cloud Computing**
-Uso de servidores remotos en internet para almacenar, administrar y procesar datos en lugar de usar un servidor local.
+- Tiene el famoso Gran Colisionador de Hadrones (LHC), un acelerador de partículas gigantesco que hace chocar protones a altísimas velocidades para estudiar lo que ocurre en el interior de la materia.
+
+- Allí trabajan científicos de todo el mundo buscando entender cómo se formó el universo, qué es la materia oscura, por qué las partículas tienen masa, etc.
+
+**CGI**
+En español: Interfaz de Entrada Común. Es una tecnología antigua que permite que un servidor web ejecute programas (como scripts en Python, Perl, Bash, etc.) para generar páginas web dinámicas.
+
+1. El usuario envía un formulario en una página web.
+
+2. El servidor llama a un programa CGI (por ejemplo, un archivo .cgi, .py, etc.).
+
+3. Ese programa procesa la información y genera una respuesta (por ejemplo, una página HTML). Es como un "puente" entre el navegador y un programa del servidor.
+
+**CSS - Cascading Style Sheets**
+CSS es el lenguaje usado para dar estilo a las páginas web. Permite definir colores, márgenes, fuentes, tamaños, posiciones y animaciones, separando el contenido (HTML) del diseño visual. Gracias a CSS, una misma estructura puede tener múltiples apariencias sin tocar el contenido.
+
 
 ## D
 
-**DOM (Document Object Model)**
-Interfaz de programación para documentos HTML y XML que define la estructura lógica del documento y la forma en que se accede y manipula.
+**DBMS - DataBase Management System**
+En español: Sistema de Gestión de Base de Datos. Es un software que te permite crear, almacenar, modificar, eliminar y consultar datos dentro de una base de datos de forma organizada, segura y eficiente.
 
-**Depuración (Debugging)**
-Proceso de identificar y eliminar errores de un software.
+**DHCP - Dynamic Host Configuration Protocol**
+DHCP es el protocolo que asigna automáticamente direcciones IP a los dispositivos que se conectan a una red. Gracias a él, no tenés que configurar la IP manualmente en cada dispositivo; el router u otro servidor se encarga de hacerlo al instante.
 
-**DevOps**
-Conjunto de prácticas que combina desarrollo de software y operaciones de TI para acortar el ciclo de vida del desarrollo.
-
+**DNS - Domain Name System**
+El DNS es el sistema que traduce los nombres de dominio (como www.google.com) en direcciones IP que las computadoras pueden entender (como 142.250.190.78). Es como la "agenda telefónica" de Internet, permitiendo que accedas a sitios web usando nombres fáciles de recordar en lugar de números.
+ 
 ## E
 
-**Express.js**
-Framework minimalista de Node.js que facilita la creación de servidores web y APIs.
+**ECMA**
+ECMA (European Computer Manufacturers Association) es una organización internacional que se encarga de crear y mantener estándares tecnológicos, especialmente en lenguajes de programación, comunicaciones y sistemas. Uno de sus estándares más conocidos es ECMA-262, que define ECMAScript, el lenguaje base de JavaScript, lo que permite que funcione igual en todos los navegadores. ECMA ayuda a asegurar que la tecnología sea compatible, estable y universal entre diferentes plataformas.
 
-**ES6 (ECMAScript 2015)**
-Versión del estándar ECMAScript que introdujo importantes actualizaciones al lenguaje JavaScript.
 
-**Endpoint**
-URL específica en una API que responde a una petición.
 
 ## F
 
-**Framework**
-Estructura conceptual y tecnológica de soporte definido, con artefactos o módulos de software que facilitan el desarrollo de software.
+**FreeBSD – Free Berkeley Software Distribution**
+FreeBSD es un sistema operativo de código abierto derivado de BSD Unix, conocido por su estabilidad, rendimiento y seguridad. Muy usado en servidores, redes y sistemas de alto rendimiento; incluso algunos sistemas como PlayStation o Netflix lo usan como base.
 
-**Frontend**
-Parte de una aplicación web con la que los usuarios interactúan directamente.
+**FTP - File Transfer Protocol**
+El FTP permite transferir archivos entre computadoras a través de Internet o una red local. Es muy usado para subir o descargar archivos de servidores web. Aunque existe desde hace muchos años, hoy se usa con medidas extra de seguridad como FTPS o SFTP.
 
-**Full-stack**
-Desarrollador que tiene conocimientos tanto de frontend como de backend.
+
 
 ## G
 
-**Git**
-Sistema de control de versiones distribuido para el seguimiento de cambios en el código fuente.
+**GNU/Linux – GNU's Not Unix / Linux Kernel**
+GNU/Linux es un sistema operativo compuesto por el núcleo Linux y herramientas del proyecto GNU. GNU aporta utilidades básicas (como compiladores, terminales y comandos) y Linux actúa como el corazón del sistema. Es libre, de código abierto, y altamente usado en servidores, desarrollos y distribuciones como Ubuntu, Debian, Fedora, etc.
 
-**GitHub**
-Plataforma basada en la nube que aloja repositorios Git y ofrece herramientas de colaboración para desarrolladores.
+**GPRS – General Packet Radio Service**
+GPRS es una mejora del GSM que permite transmisión de datos por paquetes, lo que hizo posible la navegación web y el uso de apps básicas de Internet en los primeros celulares. Fue un paso intermedio entre las redes 2G y 3G, y es conocido como una tecnología de tipo 2.5G.
 
-**GraphQL**
-Lenguaje de consulta y manipulación de datos para APIs, y un entorno de ejecución para cumplir las consultas con datos existentes.
+**GSM – Global System for Mobile Communications**
+GSM es el estándar internacional para redes de telefonía móvil. Fue clave en la evolución de los celulares, permitiendo comunicaciones de voz y envío de SMS entre dispositivos móviles. Todavía se usa en muchas redes, aunque está siendo reemplazado por tecnologías más modernas como 4G y 5G.
+
+
 
 ## H
 
-**HTML (HyperText Markup Language)**
-Lenguaje de marcado estándar para la creación de páginas web.
+**HTTP - HyperText Transfer Protocol**
+HTTP es el protocolo que se usa para transferir páginas web desde un servidor a tu navegador. Es la base de la web y funciona bajo el esquema de petición-respuesta, donde el navegador pide un recurso y el servidor lo envía. Si ves https://, significa que también se usa HTTPS, una versión segura de HTTP.
 
-**HTTP (HyperText Transfer Protocol)**
-Protocolo de comunicación que permite la transferencia de información en la World Wide Web.
+**HyperText Markup Language (HTML)**
+En español: Lenguaje de Marcado de Hipertexto. Es el lenguaje base que se usa para crear páginas web. No es un lenguaje de programación como JavaScript o C#, sino un lenguaje de marcado, que sirve para estructurar y organizar el contenido de una página web.
 
-**Hosting**
-Servicio que permite a los usuarios publicar un sitio web o aplicación web en Internet.
+**HyperText Transfer Protocol (HTTP)**
+En español: Protocolo de Transferencia de Hipertexto. Es el protocolo de comunicación que usan los navegadores web (como Chrome, Firefox, Edge, etc.) para pedir y recibir información desde los servidores donde están guardadas las páginas web.
+
+
 
 ## I
 
-**IDE (Integrated Development Environment)**
-Software que proporciona herramientas para facilitar el desarrollo de aplicaciones.
+**IANA**
+IANA (Internet Assigned Numbers Authority) es la organización encargada de asignar y coordinar los identificadores únicos de Internet, como las direcciones IP (IPv4 e IPv6), los nombres de dominio (como .com, .org, .gt), y otros números importantes para el funcionamiento de la red. Su trabajo garantiza que no se repitan direcciones y que todo esté bien organizado a nivel mundial, permitiendo que Internet funcione de forma estable y coordinada.
 
-**IIFE (Immediately Invoked Function Expression)**
-Función en JavaScript que se ejecuta tan pronto como se define.
+**IETF - Internet Engineering Task Force**
+La IETF (Fuerza de Tareas de Ingeniería de Internet) es una organización internacional abierta encargada de desarrollar y promover los estándares técnicos que mantienen y hacen crecer el funcionamiento de Internet. Publica documentos llamados RFC (Request For Comments), que definen cómo deben funcionar protocolos como HTTP, TCP/IP, DNS, SMTP y muchos otros, asegurando que los dispositivos y servicios en la red puedan comunicarse correctamente entre sí.
 
-**Internet of Things (IoT)**
-Red de objetos físicos que utilizan sensores y APIs para conectarse e intercambiar datos por internet.
+**IMAP - Internet Message Access Protocol**
+IMAP también se usa para recibir correos, pero a diferencia de POP, los correos se quedan en el servidor y podés acceder a ellos desde diferentes dispositivos. Es ideal si usas varios equipos o querés mantener sincronizados tus correos.
+
+**IP – Internet Protocol**
+En español: Protocolo de Internet. IP es el protocolo que se encarga de identificar y direccionar los dispositivos que están conectados a una red, como Internet. Cada dispositivo (computadora, teléfono, servidor, etc.) tiene una dirección IP única, que funciona como su "dirección postal digital", permitiendo que los datos lleguen correctamente de un punto a otro. Existen dos versiones: IPv4 (como 192.168.1.1) y IPv6 (como 2001:0db8:85a3::8a2e:0370:7334), esta última creada para soportar muchos más dispositivos. Sin IP, no sería posible navegar por la web, enviar correos ni usar redes sociales.
+
+**ISO**
+ISO significa International Organization for Standardization (Organización Internacional de Normalización). Es una entidad reconocida mundialmente que crea y publica normas y estándares internacionales para asegurar la calidad, seguridad, eficiencia y compatibilidad en productos, servicios y sistemas de casi todas las industrias. Por ejemplo, la ISO 9001 regula sistemas de gestión de calidad, y la ISO 27001 es para seguridad de la información. Aunque su nombre completo no coincide con las siglas (en francés sería OIN), se eligió "ISO" porque viene del griego isos, que significa igual, simbolizando estándares iguales para todo el mundo.
+
+
 
 ## J
 
-**JavaScript**
-Lenguaje de programación interpretado, orientado a objetos, utilizado principalmente en el lado del cliente web.
+**JSP - JavaServer Pages**
+En español: Páginas del Servidor en Java. JSP es una tecnología de Java que permite crear páginas web dinámicas. Funciona del lado del servidor, como PHP, ASP o Node.js. La idea es mezclar HTML con código Java, para que puedas crear contenido que cambie según la lógica del servidor, como mostrar usuarios, productos, datos, etc.
 
-**JSON (JavaScript Object Notation)**
-Formato de texto ligero para el intercambio de datos.
 
-**JWT (JSON Web Token)**
-Estándar abierto basado en JSON para crear tokens de acceso.
 
 ## K
 
@@ -120,25 +152,22 @@ Tipo de base de datos no relacional que almacena datos como colecciones de pares
 
 ## L
 
-**Library (Biblioteca)**
-Conjunto de implementaciones funcionales, codificadas en un lenguaje de programación, que ofrece una interfaz bien definida para la funcionalidad que se invoca.
+**LTE – Long Term Evolution**
+LTE es una tecnología de red móvil que forma parte del 4G, ofreciendo altas velocidades de descarga y subida, baja latencia y mejor calidad para servicios como videollamadas, juegos online y streaming. No es oficialmente 4G al 100%, pero se considera parte de esa generación.
 
-**Localhost**
-Nombre de host que se refiere al dispositivo local que se está utilizando.
 
-**Linux**
-Sistema operativo de código abierto basado en Unix.
+
 
 ## M
 
-**Middleware**
-Software que actúa como un puente entre un sistema operativo o base de datos y las aplicaciones.
+**Mac OS X (macOS)**
+Mac OS X, ahora llamado macOS, es el sistema operativo creado por Apple para sus computadoras Mac. Se destaca por su estabilidad, diseño gráfico, seguridad y por estar basado en Unix. Su interfaz es muy pulida y está optimizado para hardware específico de Apple.
 
-**MongoDB**
-Sistema de base de datos NoSQL orientado a documentos.
+**Módem-cable**
+El módem-cable es un dispositivo que brinda conexión a Internet utilizando la red de televisión por cable (coaxial). Permite velocidades más altas que ADSL y fue muy popular en zonas urbanas antes de la llegada de la fibra.
 
-**MVC (Model-View-Controller)**
-Patrón de arquitectura de software que separa los datos, la interfaz de usuario y la lógica de control.
+
+
 
 ## N
 
@@ -164,14 +193,13 @@ Software cuyo código fuente se publica y se hace disponible para el público, p
 
 ## P
 
-**Python**
-Lenguaje de programación interpretado, de alto nivel y propósito general.
+**PHP = PHP: Hypertext Preprocessor**
+En español: PHP: Preprocesador de Hipertexto. PHP es un lenguaje de programación del lado del servidor. Se usa para crear páginas web dinámicas, es decir, que cambian su contenido automáticamente dependiendo de los datos o acciones del usuario.
 
-**PWA (Progressive Web App)**
-Aplicación web que usa tecnologías web modernas para ofrecer una experiencia similar a una aplicación nativa.
+**POP - Post Office Protocol**
+POP permite recibir correos electrónicos desde el servidor al cliente de correo. La versión más común es POP3. Cuando usás POP, los correos normalmente se descargan y se eliminan del servidor (aunque esto se puede configurar).
 
-**Proxy**
-Servidor que actúa como intermediario para las solicitudes de clientes que buscan recursos de otros servidores.
+
 
 ## Q
 
@@ -183,25 +211,40 @@ Conjunto de actividades destinadas a garantizar que los productos cumplan con lo
 
 ## R
 
-**React**
-Biblioteca de JavaScript para construir interfaces de usuario.
 
-**REST (Representational State Transfer)**
-Estilo de arquitectura para sistemas distribuidos, como la World Wide Web.
+**RDSI – Red Digital de Servicios Integrados**
+La RDSI es una tecnología que permite transmitir voz, datos y video por una misma línea telefónica, pero de forma digital (más rápida y con mejor calidad que la RTC). Se usó mucho en empresas para tener conexiones más estables y rápidas que las líneas tradicionales.
 
-**Repository**
-Ubicación centralizada donde se almacena, organiza, mantiene y difunde información digital.
+**RFC - Request for Comments**
+RFC significa Petición de Comentarios y son documentos técnicos publicados por la IETF para proponer, discutir o estandarizar tecnologías y protocolos relacionados con Internet. Aunque el nombre suena informal, muchos RFC terminan convirtiéndose en estándares oficiales. Por ejemplo, el protocolo HTTP o el formato de correo electrónico están definidos en distintos RFC. Son como las "reglas del juego" para que todo funcione igual en la web.
+
+**RIA – Rich Internet Application**
+En español: Aplicación de Internet Enriquecida. Una RIA es una aplicación web que ofrece una experiencia más interactiva, fluida y similar a la de una aplicación de escritorio, pero que se ejecuta dentro del navegador. A diferencia de las páginas web tradicionales, las RIAs permiten actualizaciones dinámicas sin recargar la página completa, gracias a tecnologías como AJAX, JavaScript, XML, SOAP, entre otras. Ejemplos de RIAs son: Google Docs, Canva o algunas plataformas de correo como Outlook Web. Son ideales para crear aplicaciones más visuales, rápidas y con mejor experiencia para el usuario final.
+
+**RSS**
+RSS significa Really Simple Syndication (Distribución Realmente Simple). Es una tecnología que permite suscribirse automáticamente a contenido actualizado de páginas web (como noticias, blogs o podcasts). Funciona a través de archivos XML que contienen los últimos artículos publicados, y con un lector RSS podés ver los nuevos contenidos sin tener que entrar a cada página. Es como tener un resumen de todos tus sitios favoritos en un solo lugar, actualizado en tiempo real.
+
+**RTC – Red Telefónica Conmutada**
+La RTC (o PSTN en inglés) es la red telefónica tradicional, la que usábamos para hacer llamadas desde teléfonos fijos. A mediados de los años 90 también se utilizó para conectar computadoras a Internet mediante módems que funcionaban con señales analógicas, en lo que se conocía como "Internet por dial-up".
+
+
 
 ## S
 
-**SQL (Structured Query Language)**
-Lenguaje de programación diseñado para administrar sistemas de bases de datos relacionales.
 
-**SPA (Single Page Application)**
-Aplicación web que interactúa con el usuario reescribiendo la página actual, en lugar de cargar páginas completas nuevas.
+**SMTP - Simple Mail Transfer Protocol**
+SMTP es el protocolo principal para enviar correos electrónicos desde el cliente (como Outlook o Gmail) al servidor, o entre servidores. No se encarga de recibir correos, solo de enviarlos.
 
-**Sass (Syntactically Awesome Style Sheets)**
-Preprocesador de CSS que añade características como variables, anidamiento y mixins.
+**SOAP - Simple Object Access Protocol**
+SOAP es un protocolo basado en XML que permite que aplicaciones diferentes se comuniquen entre sí a través de la red, especialmente en servicios web. Es muy usado en entornos empresariales donde se necesita una comunicación segura, estructurada y basada en estándares formales.
+
+**Solaris**
+Solaris es un sistema operativo desarrollado originalmente por Sun Microsystems (ahora propiedad de Oracle), basado en Unix. Se usaba principalmente en servidores empresariales por su gran rendimiento, escalabilidad y soporte para sistemas grandes y complejos.
+
+**STD - Standard**
+STD es la sigla para Standard (Estándar), y en el contexto de la IETF se refiere a un documento oficialmente reconocido como un estándar de Internet. Muchos RFC se convierten en STDs una vez que pasan por revisión y se aceptan formalmente. Un STD garantiza que un protocolo (como TCP/IP, por ejemplo) se aplique de forma estable y universal para que cualquier sistema del mundo lo entienda.
+
+
 
 ## T
 
@@ -216,14 +259,25 @@ Proceso de desarrollo de software que se basa en repetir un ciclo de desarrollo 
 
 ## U
 
-**UI (User Interface)**
-Todo lo que el usuario puede ver e interactuar en una aplicación o sitio web.
 
-**URL (Uniform Resource Locator)**
-Dirección específica que se asigna a cada recurso disponible en la web.
+**UMTS – Universal Mobile Telecommunications System**
+UMTS es un sistema de comunicaciones móviles que pertenece a la tercera generación (3G). Mejoró significativamente la velocidad y capacidad de los datos móviles en comparación con 2G, permitiendo el uso de videollamadas, navegación web y apps móviles con datos.
 
-**UX (User Experience)**
-Experiencia completa que tiene un usuario al interactuar con un producto o servicio.
+**URL - Uniform Resource Locator**
+En español: Localizador Uniforme de Recursos. Una URL es la dirección única que se usa para localizar y acceder a recursos en Internet, como páginas web, imágenes, videos o archivos. Por ejemplo, https://www.google.com es una URL. Cada URL contiene varios componentes como el protocolo (https), el dominio (google.com), y a veces una ruta o parámetros. Gracias a las URLs, los navegadores saben exactamente dónde encontrar y cómo acceder a la información que pedís. Es como la "dirección postal" de cualquier cosa en la web.
+
+**UTC**
+UTC significa Coordinated Universal Time (Tiempo Universal Coordinado). Es el estándar mundial de tiempo que sirve como referencia oficial para todos los relojes del planeta, sin importar la zona horaria. No cambia con estaciones ni países, y se basa en relojes atómicos súper precisos. Es como el "reloj maestro" del mundo, y de él se derivan todas las zonas horarias (como UTC-6 en Guatemala). Aunque las siglas no siguen el orden del inglés ni del francés, se acordó "UTC" como una versión neutral para todos los idiomas.
+
+**UTR**
+Son documentos oficiales publicados por el Consorcio Unicode que explican en detalle cómo debe implementarse Unicode en distintos sistemas, aplicaciones, y tecnologías. Estos informes cubren temas técnicos como:
+
+- Cómo manejar diferentes scripts (latino, árabe, chino, etc.).
+
+- Reglas para emojis, direcciones de texto (derecha a izquierda), normalización, etc.
+
+- Compatibilidad entre versiones del estándar Unicode.
+
 
 ## V
 
@@ -238,22 +292,28 @@ Framework progresivo para construir interfaces de usuario.
 
 ## W
 
-**Webpack**
-Empaquetador de módulos estático para aplicaciones JavaScript modernas.
 
-**WebSocket**
-Protocolo de comunicación que proporciona canales de comunicación bidireccional sobre una única conexión TCP.
+**W3C - World Wide Web Consortium**
+El W3C (World Wide Web Consortium) es una organización internacional fundada por Tim Berners-Lee -el creador de la Web- que se encarga de desarrollar los estándares oficiales para que Internet funcione de forma abierta, accesible y compatible entre todos los navegadores, dispositivos y plataformas. Define tecnologías clave como HTML, CSS, XML, SVG y muchas más. Gracias al W3C, los sitios web siguen reglas comunes que permiten que se vean y funcionen igual en todo el mundo.
 
-**WWW (World Wide Web)**
-Sistema de distribución de documentos de hipertexto interconectados y accesibles a través de Internet.
+**Windows**
+Windows es el sistema operativo desarrollado por Microsoft, conocido por su interfaz gráfica amigable, compatibilidad con muchos programas y uso masivo en oficinas, hogares y escuelas. Es un sistema privativo y comercial, muy extendido en computadoras personales.
+
+**World Wide Web**
+Es un sistema de información que utiliza internet para permitir el acceso a documentos y recursos a través de enlaces. Es lo que usás cuando navegas en tu navegador. Por ejemplo, cuando abrís Facebook, Google o cualquier página, estás accediendo a la Web.
+
+**WSDL – Web Services Description Language**
+WSDL es un lenguaje basado en XML que describe qué hace un servicio web, cómo se puede acceder y qué parámetros necesita. Sirve como “manual técnico” que explica cómo comunicarse con ese servicio de forma correcta.
+
+
 
 ## X
 
-**XML (eXtensible Markup Language)**
-Lenguaje de marcado similar a HTML pero diseñado para almacenar y transportar datos.
 
-**XSS (Cross-Site Scripting)**
-Vulnerabilidad de seguridad que permite a los atacantes inyectar scripts maliciosos en páginas web vistas por otros usuarios.
+**XHTML - eXtensible HyperText Markup Language**
+XHTML es una versión más estricta y estructurada de HTML, basada en XML. Fue creada para hacer que las páginas web fueran más compatibles entre navegadores y más fáciles de procesar por máquinas, obligando a seguir reglas más rígidas en la escritura del código (como cerrar todas las etiquetas correctamente). Es como HTML con reglas de buena conducta.
+
+
 
 ## Y
 
@@ -265,8 +325,6 @@ Gestor de paquetes para JavaScript, alternativo a NPM.
 
 ## Z
 
-**Zero-day Vulnerability**
-Vulnerabilidad de seguridad informática que es desconocida para los afectados o que no tiene parche disponible.
 
 **ZIP**
 Formato de archivo comprimido que permite reducir el tamaño de uno o más archivos.

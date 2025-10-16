@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, Github, FileText } from 'lucide-react';
+import { ExternalLink, Github, FileText, BookOpen } from 'lucide-react';
 import { 
   SiHtml5, 
   SiCss3, 
@@ -18,7 +18,7 @@ import {
 import HojaDeVida from '../assets/proyectos/Hoja-de-Vida.png';
 import Formulario from '../assets/proyectos/Formulario.png';
 import DisenoResponsivo from '../assets/proyectos/Diseño-Responsivo.png';
-import Glosario from '../assets/proyectos/Glosario.png';
+import GlosaryImg from '../assets/Glosary.png';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -134,7 +134,7 @@ const Projects: React.FC = () => {
                       />
                     ) : project.title === "Glosario de Programación" || project.title === "Programming Glossary" ? (
                       <img 
-                        src={Glosario} 
+                        src={GlosaryImg} 
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
@@ -157,43 +157,56 @@ const Projects: React.FC = () => {
                     </p>
 
                     {/* Technologies */}
-                    <div className="flex flex-wrap gap-4 mb-4 items-center justify-center">
-                      {project.technologies.map((tech, techIndex) => (
-                        <motion.div
-                          key={techIndex}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={inView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ duration: 0.3, delay: 0.5 + techIndex * 0.1 }}
-                          className="flex flex-col items-center"
-                          title={tech}
-                        >
-                          {renderSkillIcon(tech)}
-                          <span className="text-xs text-gray-400 mt-1">{tech}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+                    {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" ? (
+                      <div className="flex flex-wrap gap-4 mb-4 items-center justify-center">
+                        {project.technologies.map((tech, techIndex) => (
+                          <motion.div
+                            key={techIndex}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={inView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.3, delay: 0.5 + techIndex * 0.1 }}
+                            className="flex flex-col items-center"
+                            title={tech}
+                          >
+                            {renderSkillIcon(tech)}
+                            <span className="text-xs text-gray-400 mt-1">{tech}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center mb-4">
+                        <div className="flex flex-col items-center text-gray-200">
+                          <BookOpen className="w-10 h-10 text-gray-200" />
+                          <span className="text-xs text-gray-400 mt-1">Glosario</span>
+                        </div>
+                      </div>
+                    )}
                     
                     {/* Project Links */}
                     <div className="flex justify-center gap-3 pt-3 border-t border-gray-800">
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-4 py-2 bg-gray-800 text-white text-sm rounded hover:bg-gray-700 transition-colors"
-                      >
-                        <Github size={16} className="inline-block" />
-                        <span>{t('projects.viewRepository')}</span>
-                      </a>
-                      
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-4 py-2 bg-red-700 text-white text-sm rounded hover:bg-red-600 transition-colors"
-                      >
-                        <ExternalLink size={16} className="inline-block" />
-                        <span>{t('projects.viewDemo')}</span>
-                      </a>
+                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && project.repoUrl && (
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 px-4 py-2 bg-gray-800 text-white text-sm rounded hover:bg-gray-700 transition-colors"
+                        >
+                          <Github size={16} className="inline-block" />
+                          <span>{t('projects.viewRepository')}</span>
+                        </a>
+                      )}
+
+                      {project.title !== "Glosario de Programación" && project.title !== "Programming Glossary" && project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 px-4 py-2 bg-red-700 text-white text-sm rounded hover:bg-red-600 transition-colors"
+                        >
+                          <ExternalLink size={16} className="inline-block" />
+                          <span>{t('projects.viewDemo')}</span>
+                        </a>
+                      )}
 
                       {project.hasGlossary && (
                         <a

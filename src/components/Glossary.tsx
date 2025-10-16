@@ -74,10 +74,24 @@ const Glossary: React.FC = () => {
         let currentDefinition = '';
         
         for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
-          
+          // No usar solo trim() porque queremos detectar líneas vacías para preservar párrafos
+          const rawLine = lines[i].replace(/\r?$/, '');
+          const line = rawLine.trim();
+
           // Detectar secciones de letras (## A, ## B, etc.)
           if (line.startsWith('## ')) {
+            // Antes de cambiar de sección, guardar el término pendiente (si existe)
+            if (currentTerm && currentDefinition && currentLetter) {
+              glossaryByLetter[currentLetter] = glossaryByLetter[currentLetter] || [];
+              glossaryByLetter[currentLetter].push({
+                term: currentTerm,
+                definition: currentDefinition.trim(),
+                letter: currentLetter
+              });
+              currentTerm = '';
+              currentDefinition = '';
+            }
+
             currentLetter = line.substring(3).trim();
             glossaryByLetter[currentLetter] = glossaryByLetter[currentLetter] || [];
           } 
@@ -97,8 +111,14 @@ const Glossary: React.FC = () => {
             currentDefinition = '';
           } 
           // Agregar líneas a la definición actual
-          else if (currentTerm && line !== '') {
-            currentDefinition += currentDefinition ? ' ' + line : line;
+          else if (currentTerm) {
+            if (line === '') {
+              // línea vacía: mantener separación de párrafos
+              currentDefinition += currentDefinition ? '\n\n' : '\n\n';
+            } else {
+              // línea con texto: concatenar, respetando espacios
+              currentDefinition += currentDefinition ? ' ' + line : line;
+            }
           }
         }
         
@@ -255,7 +275,10 @@ const Glossary: React.FC = () => {
                         className="bg-gray-900/80 rounded-lg p-6 border border-red-700/20 hover:border-red-500/40 transition-all duration-300"
                       >
                         <h3 className="text-xl text-white font-semibold mb-2">{item.term}</h3>
-                        <p className="text-gray-300 leading-relaxed">{item.definition}</p>
+                        {/* Dividir la definición en párrafos por separadores '\n\n' y renderizar cada párrafo por separado */}
+                        {item.definition.split(/\n{2,}/).map((para, pidx) => (
+                          <p key={pidx} className="text-gray-300 leading-relaxed">{para.trim()}</p>
+                        ))}
                       </motion.div>
                     ))}
                   </div>
@@ -289,7 +312,10 @@ const Glossary: React.FC = () => {
                         className="bg-gray-900/80 rounded-lg p-6 border border-red-700/20 hover:border-red-500/40 transition-all duration-300"
                       >
                         <h3 className="text-xl text-white font-semibold mb-2">{item.term}</h3>
-                        <p className="text-gray-300 leading-relaxed">{item.definition}</p>
+                        {/* Dividir la definición en párrafos por separadores '\n\n' y renderizar cada párrafo por separado */}
+                        {item.definition.split(/\n{2,}/).map((para, pidx) => (
+                          <p key={pidx} className="text-gray-300 leading-relaxed">{para.trim()}</p>
+                        ))}
                       </motion.div>
                     ))}
                   </div>
