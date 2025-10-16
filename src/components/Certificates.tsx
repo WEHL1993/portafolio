@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -23,6 +23,8 @@ import certHtmlCss from '../assets/certificates/Certificado-HTML-CSS.png';
 import certJavaScript from '../assets/certificates/Certificado-JavaScript.png';
 import certNodeJs from '../assets/certificates/Certificado-Node.js.png';
 import certTypeScript from '../assets/certificates/Certificado-TypeScript.png';
+
+type HistoryCertState = { certIndex?: number };
 
 const Certificates: React.FC = () => {
   const { t } = useTranslation();
@@ -100,11 +102,51 @@ const Certificates: React.FC = () => {
 
   const openLightbox = (index: number) => {
     setSelectedCertificate(index);
+    // Añadir una entrada en el historial para que el botón atrás cierre el lightbox
+    try {
+      window.history.pushState({ certIndex: index }, '', `#certificate-${index}`);
+    } catch (e) {
+      // si falla por cualquier motivo, no bloqueamos la apertura
+      console.warn('pushState failed', e);
+    }
   };
 
   const closeLightbox = () => {
+    // Si la entrada actual del historial corresponde a un certificado, retrocedemos
+    // para disparar popstate y dejar que el listener cierre el lightbox.
+    try {
+      const st = window.history.state as unknown;
+      if (st && typeof (st as HistoryCertState).certIndex === 'number') {
+        window.history.back();
+        return;
+      }
+    } catch {
+      // seguir con el cierre normal si algo falla
+    }
+
     setSelectedCertificate(null);
+    // Asegurar que volvemos al área de certificaciones visualmente
+    const el = document.getElementById('certificates');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Escuchar cambios en el historial para abrir/cerrar el lightbox con back/forward
+  useEffect(() => {
+    const onPopState = (e: PopStateEvent) => {
+      const state = e.state as unknown;
+      if (state && typeof (state as HistoryCertState).certIndex === 'number') {
+        setSelectedCertificate((state as HistoryCertState).certIndex as number);
+      } else {
+        // Si no hay estado de certificado, cerrar el lightbox y navegar al área
+        setSelectedCertificate(null);
+        const el = document.getElementById('certificates');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   return (
     <section id="certificates" className="w-full py-20 bg-gradient-to-br from-black to-red-950 overflow-x-hidden">

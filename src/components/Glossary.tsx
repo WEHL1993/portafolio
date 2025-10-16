@@ -193,19 +193,12 @@ const Glossary: React.FC = () => {
   // Manejar clic en una letra
   const handleLetterClick = (letter: string) => {
     setSelectedLetter(letter);
-    
-    // Si no es "all", hacer scroll suave al ancla de la letra
-    if (letter !== 'all') {
-      const element = document.getElementById(`letter-${letter}`);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // Si es "all", scroll al inicio del glosario
-      const glossaryElement = document.getElementById('glossary');
-      if (glossaryElement) {
-        glossaryElement.scrollIntoView({ behavior: 'smooth' });
-      }
+    // Siempre hacer scroll al encabezado del glosario para que el usuario
+    // vea el título y el filtro; si quiere puede hacer scroll hasta la letra
+    // y los términos manualmente.
+    const glossaryElement = document.getElementById('glossary');
+    if (glossaryElement) {
+      glossaryElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
   
