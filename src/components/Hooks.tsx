@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -13,6 +13,16 @@ const Hooks: React.FC = () => {
       navigate('/#projects', { replace: true });
     }, 300);
   };
+
+  // Forzar scroll al encabezado Hooks al montar
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const el = document.getElementById('hooks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 120);
+
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <motion.section

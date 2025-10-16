@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -24,6 +24,22 @@ const AboutMe: React.FC = () => {
     loop: false,
     backSpeed: 0
   });
+
+  // Cuando el contenido del terminal aumenta, hacer scroll al final para que todo sea visible
+  useEffect(() => {
+    const container = document.getElementById('terminal-content');
+    if (!container) return;
+
+    const observer = new MutationObserver(() => {
+      // scroll hacia el final suavemente
+      container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    });
+
+    observer.observe(container, { childList: true, subtree: true, characterData: true });
+
+    // limpiar
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="about" className="w-full py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-gray-900 to-black overflow-x-hidden">
@@ -64,10 +80,10 @@ const AboutMe: React.FC = () => {
               </div>
             </div>
 
-            {/* Terminal Content - Text Area adaptativa con Tailwind */}
+            {/* Terminal Content - Tamaño fijo responsive con scroll interno */}
             <div 
               id="terminal-content"
-              className="p-1.5 max-[359px]:p-1.5 min-[360px]:p-2 min-[414px]:p-2.5 sm:p-3 md:p-6 bg-black text-green-400 font-mono h-auto w-full max-w-full overflow-visible"
+              className="p-1.5 max-[359px]:p-1.5 min-[360px]:p-2 min-[414px]:p-2.5 sm:p-3 md:p-6 bg-black text-green-400 font-mono w-full max-w-full overflow-auto h-48 sm:h-56 md:h-72 lg:h-80"
             >
               {/* Prompt */}
               <div className="mb-1 max-[359px]:mb-0.5 min-[360px]:mb-1 min-[414px]:mb-1 sm:mb-2">
