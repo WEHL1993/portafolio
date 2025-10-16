@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useBaffle } from '../hooks/useBaffle';
@@ -8,28 +8,6 @@ import formalImage from '../assets/imagenFormal.jpeg';
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
   const nameRef = useBaffle(t('hero.name'), { characters: '█▓▒░/<>', speed: 75 });
-
-  const [downloadDone, setDownloadDone] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState('');
-
-  async function handleDownload(url: string) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('Network response was not ok');
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    setDownloadUrl(blobUrl);
-
-    // crear enlace temporal que inicie la descarga
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = 'wilson-hernandez-cv.pdf';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    // indicar al usuario que la descarga terminó (útil en móviles)
-    setDownloadDone(true);
-  }
 
   return (
     <section id="hero" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 relative overflow-hidden py-16 sm:py-0">
@@ -137,56 +115,16 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 1.8 }}
               className="mt-8"
             >
-              {/* Botón que usa fetch para detectar cuando termina la descarga en móviles */}
-              <motion.button
-                onClick={async () => {
-                  // descarga solo en navegadores que permitan fetch de archivos públicos
-                  try {
-                    await handleDownload('/wilson-hernandez-cv.pdf');
-                  } catch (err) {
-                    console.error(err);
-                    // fallback a descarga normal si algo falla
-                    const a = document.createElement('a');
-                    a.href = '/wilson-hernandez-cv.pdf';
-                    a.setAttribute('download', 'wilson-hernandez-cv.pdf');
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                  }
-                }}
+              <motion.a
+                href="/wilson-hernandez-cv.pdf"
+                download
                 className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-full shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(220, 38, 38, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Download size={18} />
                 <span>Descargar CV</span>
-              </motion.button>
-
-              {/* Notificación simple en pantalla móvil */}
-              {downloadDone && (
-                <div className="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 bg-gray-900/95 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3">
-                  <span>Archivo descargado</span>
-                  <button
-                    onClick={() => {
-                      if (downloadUrl) window.open(downloadUrl, '_blank');
-                    }}
-                    className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white text-sm"
-                  >
-                    Abrir
-                  </button>
-                  <button
-                    onClick={() => {
-                      // limpiar URL
-                      if (downloadUrl) URL.revokeObjectURL(downloadUrl);
-                      setDownloadUrl('');
-                      setDownloadDone(false);
-                    }}
-                    className="text-gray-400 text-sm"
-                  >
-                    Cerrar
-                  </button>
-                </div>
-              )}
+              </motion.a>
             </motion.div>
           </div>
 
