@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
+// X button removed: no longer used
 import useSmoothScroll from '../hooks/useSmoothScroll';
 
 interface GlossaryItem {
@@ -27,39 +27,8 @@ const Glossary: React.FC = () => {
   // Inicializar scroll suave
   useSmoothScroll();
   
-  // Estado para controlar la animación de salida
-  const [isExiting, setIsExiting] = useState(false);
-  
-  // Función para salir del glosario
-  const handleClose = () => {
-    // Activar animación de salida
-    setIsExiting(true);
-    
-    // Navegar después de que termine la animación
-    setTimeout(() => {
-      // En móviles preferimos reemplazar la URL por /#projects y hacer scroll al ancla
-      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-        try {
-          window.history.replaceState(null, '', '/#projects');
-          const el = document.getElementById('projects');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        } catch {
-          navigate('/#projects', { replace: true });
-        }
-      } else {
-        // Si hay historial previo, volver atrás; si no, ir a /#projects reemplazando la entrada
-        try {
-          if (window.history.length > 1) {
-            navigate(-1);
-          } else {
-            navigate('/#projects', { replace: true });
-          }
-        } catch {
-          navigate('/#projects', { replace: true });
-        }
-      }
-    }, 300); // Duración de la animación
-  };
+  // No X button anymore: always navigate to projects on back
+  const [isExiting] = useState(false);
 
   // Función para filtrar los elementos según la letra seleccionada
   const updateFilteredItems = (data: GlossaryByLetter, letter: string) => {
@@ -78,6 +47,18 @@ const Glossary: React.FC = () => {
 
   // Efecto para cargar los datos del glosario
   useEffect(() => {
+    // Interceptar popstate (botón atrás) y redirigir siempre a /#projects
+    const onPopState = () => {
+      try {
+        window.history.replaceState(null, '', '/#projects');
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } catch {
+        navigate('/#projects', { replace: true });
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
     const fetchGlossary = async () => {
       try {
         const response = await fetch('/glosario.txt');
@@ -169,7 +150,7 @@ const Glossary: React.FC = () => {
     
     fetchGlossary();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
   
   // Efecto para actualizar los elementos filtrados cuando cambia la letra seleccionada
   useEffect(() => {
@@ -190,9 +171,24 @@ const Glossary: React.FC = () => {
       }
     }, 120);
 
-    return () => clearTimeout(t);
+    const onPopState = () => {
+      try {
+        window.history.replaceState(null, '', '/#projects');
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } catch {
+        navigate('/#projects', { replace: true });
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
+
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('popstate', onPopState);
+    };
     // Queremos que esto sólo corra al montar
-  }, []);
+  }, [navigate]);
   
   // Manejar clic en una letra
   const handleLetterClick = (letter: string) => {
@@ -222,22 +218,7 @@ const Glossary: React.FC = () => {
       transition={{ duration: 0.3 }}
     >
       <div className="container mx-auto px-4 max-w-5xl relative">
-        {/* Botón X para cerrar */}
-  <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2 }}
-          onClick={handleClose}
-          tabIndex={-1}
-          onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
-          className="fixed top-14 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
-          aria-label={t('glossary.close')}
-          title={t('glossary.close')}
-        >
-          <X size={24} />
-        </motion.button>
+        {/* Botón X eliminado - cierre ahora se gestiona con popstate/back button */}
         
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}

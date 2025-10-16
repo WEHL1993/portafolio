@@ -1,36 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { X } from 'lucide-react';
 
 const Hooks: React.FC = () => {
   const navigate = useNavigate();
-  const [isExiting, setIsExiting] = useState(false);
-
-  const handleClose = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-        try {
-          window.history.replaceState(null, '', '/#projects');
-          const el = document.getElementById('projects');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        } catch {
-          navigate('/#projects', { replace: true });
-        }
-      } else {
-        try {
-          if (window.history.length > 1) {
-            navigate(-1);
-          } else {
-            navigate('/#projects', { replace: true });
-          }
-        } catch {
-          navigate('/#projects', { replace: true });
-        }
-      }
-    }, 300);
-  };
+  const [isExiting] = useState(false);
 
   // Forzar scroll al encabezado Hooks al montar
   useEffect(() => {
@@ -39,8 +13,24 @@ const Hooks: React.FC = () => {
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }, 120);
 
-    return () => clearTimeout(t);
-  }, []);
+    // Intercept popstate (botón atrás) para dirigir siempre a /#projects
+    const onPopState = () => {
+      try {
+        window.history.replaceState(null, '', '/#projects');
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } catch {
+        navigate('/#projects', { replace: true });
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
+
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('popstate', onPopState);
+    };
+  }, [navigate]);
 
   return (
     <motion.section
@@ -50,21 +40,7 @@ const Hooks: React.FC = () => {
       animate={{ opacity: isExiting ? 0 : 1 }}
       transition={{ duration: 0.3 }}
     >
-  <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.15 }}
-  onClick={handleClose}
-  tabIndex={-1}
-  onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
-        className="fixed top-14 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all z-50"
-        aria-label="Cerrar Hooks"
-        title="Cerrar Hooks"
-      >
-        <X size={24} />
-      </motion.button>
+  {/* Botón X eliminado - cierre manejado por botón atrás */}
       <div className="container mx-auto px-4 max-w-5xl">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-white">Hooks</h1>
 
