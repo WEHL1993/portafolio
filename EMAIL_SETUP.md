@@ -54,23 +54,17 @@ Este mensaje fue enviado desde tu portafolio web.
 
 ### 5. 💻 Actualizar la Configuración
 
-1. Edita el archivo `.env` en la raíz del proyecto y actualiza la clave pública:
+1. Crea o edita un archivo `.env` en la raíz del proyecto con las siguientes variables (copiadas desde tu dashboard de EmailJS):
 
 ```
-VITE_EMAILJS_PUBLIC_KEY=tu_public_key_aqui
+VITE_EMAILJS_SERVICE_ID=service_xxxxxx
+VITE_EMAILJS_TEMPLATE_ID=template_yyyyyy
+VITE_EMAILJS_PUBLIC_KEY=user_abc123xyz
 ```
 
-⚠️ **IMPORTANTE**: La Public Key empieza siempre con `user_` seguido de caracteres alfanuméricos.
+⚠️ **IMPORTANTE**: Usa exactamente los valores que copiaste en EmailJS (por ejemplo `service_...`, `template_...`, y la Public Key que comienza con `user_`).
 
-2. Edita el archivo `src/services/emailService.ts` y reemplaza los IDs de servicio y plantilla:
-
-```typescript
-export const EMAIL_CONFIG = {
-  serviceId: 'service_xxxxxx',     // Reemplaza con tu Service ID (comienza con 'service_')
-  templateId: 'template_yyyyyy',   // Reemplaza con tu Template ID (comienza con 'template_')
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-};
-```
+> Nota: No es necesario editar `src/services/emailService.ts`. El servicio ya lee estas variables de entorno automáticamente.
 
 ### 6. ✅ Probar el Formulario
 

@@ -18,7 +18,7 @@ interface FormErrors {
 
 // Props del componente
 interface DirectFormSubmitProps {
-  recipientEmail: string; // Email de destino configurable
+  recipientEmail?: string; // Email de destino opcional (compatibilidad con FormSubmit)
   subjectPrefix?: string; // Prefijo personalizado para el asunto
   className?: string;     // Clases adicionales para el contenedor
 }
@@ -119,35 +119,48 @@ const DirectFormSubmit: React.FC<DirectFormSubmitProps> = ({
     }, 300); // Un pequeño delay para que se vea natural
 
     // Si el formulario es válido, enviamos los datos en segundo plano
-    const formElement = e.currentTarget;
-    const formData = new FormData(formElement);
-    
-    // Agregar un parámetro aleatorio para evitar cachés
+    const formElement = e.currentTarget as HTMLFormElement;
+
+    // Si se proporcionó recipientEmail, añadirlo como campo oculto para compatibilidad con FormSubmit
+    if (recipientEmail) {
+      const toInput = document.createElement('input');
+      toInput.type = 'hidden';
+      toInput.name = '_to';
+      toInput.value = recipientEmail;
+      formElement.appendChild(toInput);
+    }
+
+    // Agregar un parámetro aleatorio para evitar cachés (añadido como input oculto al form)
     const timestamp = new Date().getTime();
-    formData.append('_nocache', timestamp.toString());
-    
-    // Asegurar activación de FormSubmit
-    formData.append('_autoresponse', 'Tu mensaje ha sido recibido. ¡Gracias por contactarme!');
-    
-    // Enviar datos en segundo plano con navegador en modo no bloqueante
+    const nocacheInput = document.createElement('input');
+    nocacheInput.type = 'hidden';
+    nocacheInput.name = '_nocache';
+    nocacheInput.value = timestamp.toString();
+    formElement.appendChild(nocacheInput);
+
+    // Asegurar activación de respuesta automática (si el template lo usa)
+    const autorespInput = document.createElement('input');
+    autorespInput.type = 'hidden';
+    autorespInput.name = '_autoresponse';
+    autorespInput.value = 'Tu mensaje ha sido recibido. ¡Gracias por contactarme!';
+    formElement.appendChild(autorespInput);
+
+    // Enviar datos en segundo plano con EmailJS usando el servicio
     const sendInBackground = async () => {
       try {
-        const response = await fetch(`https://formsubmit.co/${recipientEmail}`, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json',
-            'Cache-Control': 'no-cache, no-store'
-          }
-        });
-        
-        if (!response.ok) {
-          console.error('Error al enviar el formulario:', response.statusText);
+        const { sendContactEmail } = await import('../services/emailService');
+        const success = await sendContactEmail(formElement);
+        if (!success) {
+          console.error('EmailJS: el envío no fue exitoso.');
         }
       } catch (error) {
-        console.error('Error al enviar el formulario:', error);
+        console.error('Error al enviar el formulario con EmailJS:', error);
       } finally {
+        // Limpiar estado de carga
         setIsLoading(false);
+        // Eliminar inputs que añadimos para no contaminar el form si el usuario vuelve
+        if (nocacheInput.parentElement) nocacheInput.remove();
+        if (autorespInput.parentElement) autorespInput.remove();
       }
     };
 

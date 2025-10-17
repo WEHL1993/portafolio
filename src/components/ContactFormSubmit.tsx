@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import DirectFormSubmit from './DirectFormSubmit';
+import DirectFormSubmit from './Directemailjs';
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 
 const ContactFormSubmit: React.FC = () => {

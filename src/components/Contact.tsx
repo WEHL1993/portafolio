@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import { Mail, MapPin, MessageCircle } from 'lucide-react';
-import DirectFormSubmit from './DirectFormSubmit';
+import DirectFormSubmit from './Directemailjs';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
