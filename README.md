@@ -3,6 +3,8 @@
 
 Sitio web personal construido con React, TypeScript y Vite para mostrar proyectos, certificados, investigación y formas de contacto.
 
+Producción: https://portafoliowebwilson.netlify.app
+
 Este repositorio contiene el código fuente del portafolio, configurado con soporte para i18n (es/en), animaciones (Framer Motion) y un formulario de contacto funcional (EmailJS).
 
 ---
