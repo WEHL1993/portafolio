@@ -13,22 +13,38 @@ body {
   min-height: 100vh;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* NOTE: custom scrollbar rules removed to use the native scrollbar and avoid visual progress-bar effect */
+
+/* Hide native scrollbar visually but keep scrolling functional */
+/* WebKit-based browsers (Chrome, Safari, Edge Chromium) */
+/* Aggressively hide native scrollbars visually but keep scrolling functional */
+/* Applies to WebKit, Blink (Chrome, Edge Chromium, Safari) and Firefox */
+
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent !important;
+  display: none !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #dc2626;
-  border-radius: 4px;
+html, body, * {
+  scrollbar-width: none !important;
+  scrollbar-color: transparent transparent !important;
+  -ms-overflow-style: none !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #b91c1c;
+/* Utility class to hide scrollbars on specific elements */
+.no-scrollbar {
+  scrollbar-width: none !important;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
 }
 
 /* Animations */

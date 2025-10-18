@@ -24,6 +24,8 @@ html, body {
   padding: 0;
   height: 100%;
   overflow-x: hidden;
+  /* disable document scrolling; scroll will be handled by #root */
+  overflow-y: hidden;
 }
 
 body {
@@ -35,6 +37,16 @@ body {
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
+  /* enable scrolling inside root and hide native scrollbar visuals */
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide any scrollbar on #root for WebKit/Blink */
+#root::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
 }
 
 /* Typography */
@@ -79,22 +91,40 @@ section {
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* NOTE: custom scrollbar rules removed to use the native scrollbar and avoid visual progress-bar effect */
+
+/* Aggressively hide native scrollbars visually but keep scrolling functional */
+/* Applies to WebKit, Blink (Chrome, Edge Chromium, Safari) and Firefox */
+/* NOTE: some OS-level overlay scrollbars may still appear depending on platform */
+
+/* WebKit/Blink: remove width/height and force transparent */
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
+/* Ensure any thumb/track/corner are transparent and not visible */
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent !important;
+  display: none !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #dc2626;
-  border-radius: 4px;
+/* Firefox: hide and make transparent */
+html, body, * {
+  scrollbar-width: none !important; /* hide */
+  scrollbar-color: transparent transparent !important; /* transparent colors */
+  -ms-overflow-style: none !important; /* IE 10+ */
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #b91c1c;
+/* Utility class (if needed for specific elements) */
+.no-scrollbar {
+  scrollbar-width: none !important;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
 }
 
 /* Selection styles */
