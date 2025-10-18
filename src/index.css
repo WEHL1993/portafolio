@@ -24,8 +24,8 @@ html, body {
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  /* disable document scrolling; scroll will be handled by #root */
-  overflow-y: hidden;
+  /* Permitir scroll nativo en el documento para que la rueda y gestos táctiles funcionen */
+  overflow-y: auto;
 }
 
 body {
@@ -37,7 +37,7 @@ body {
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  /* enable scrolling inside root and hide native scrollbar visuals */
+  /* Mantener #root como contenedor principal; el scroll ahora se maneja a nivel de documento */
   overflow-y: auto;
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
