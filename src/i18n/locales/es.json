@@ -31,6 +31,7 @@
   "viewHooks": "Ver investigación",
     "items": [
       {
+        "id": "hoja-de-vida",
         "title": "Hoja de vida",
         "description": "Desarrollo y Publicación de una Página Web Personal",
         "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap", "React"],
@@ -38,6 +39,7 @@
         "demoUrl": "https://hoja-de-vida-neon.vercel.app"
       },
       {
+        "id": "formulario",
         "title": "Formulario",
         "description": "Formulario web donde guarde la información ingresada",
         "technologies": ["HTML5", "CSS3", "React", "NodeJS"],
@@ -45,6 +47,7 @@
         "demoUrl": "https://storied-pudding-c1fc3c.netlify.app/"
       },
       {
+        "id": "diseno-responsivo",
         "title": "Diseño Responsivo",
         "description": "Implementación de Diseño Responsivo en una página web",
         "technologies": ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
@@ -52,6 +55,7 @@
         "demoUrl": "https://eclectic-sprinkles-4c7250.netlify.app/"
       },
       {
+        "id": "glosario",
         "title": "Glosario de Programación",
         "description": "Glosario completo de términos de programación para consulta rápida",
         "technologies": ["HTML5", "CSS3", "JavaScript", "React", "TypeScript"],
@@ -62,6 +66,7 @@
       }
       ,
       {
+        "id": "hooks",
         "title": "Hooks",
         "description": "Investigación y apuntes sobre Hooks de React: uso, reglas y patrones comunes.",
         "technologies": ["React", "JavaScript", "TypeScript"],

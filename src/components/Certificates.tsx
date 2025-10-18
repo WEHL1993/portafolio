@@ -102,12 +102,14 @@ const Certificates: React.FC = () => {
 
   const openLightbox = (index: number) => {
     setSelectedCertificate(index);
+    // Guardar el certificado actual para poder scrollear a él al volver
+    try { sessionStorage.setItem('lastCertificate', String(index)); } catch { /* ignore */ }
     // Añadir una entrada en el historial para que el botón atrás cierre el lightbox
     try {
       window.history.pushState({ certIndex: index }, '', `#certificate-${index}`);
-    } catch (e) {
+    } catch (err) {
       // si falla por cualquier motivo, no bloqueamos la apertura
-      console.warn('pushState failed', e);
+      console.warn('pushState failed', err);
     }
   };
 
@@ -125,7 +127,22 @@ const Certificates: React.FC = () => {
     }
 
     setSelectedCertificate(null);
-    // Asegurar que volvemos al área de certificaciones visualmente
+    // Asegurar que volvemos al certificado que vimos (afuera de la card) si existe
+    try {
+      const last = sessionStorage.getItem('lastCertificate');
+      if (last) {
+        const el = document.getElementById(`certificate-${last}`);
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+        }
+        sessionStorage.removeItem('lastCertificate');
+        return;
+      }
+    } catch {
+      // ignore
+    }
+
+    // Fallback: scrollear a la sección de certificados
     const el = document.getElementById('certificates');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
@@ -139,6 +156,20 @@ const Certificates: React.FC = () => {
       } else {
         // Si no hay estado de certificado, cerrar el lightbox y navegar al área
         setSelectedCertificate(null);
+        try {
+          const last = sessionStorage.getItem('lastCertificate');
+          if (last) {
+            const el = document.getElementById(`certificate-${last}`);
+            if (el) {
+              setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+            }
+            sessionStorage.removeItem('lastCertificate');
+            return;
+          }
+        } catch {
+          // ignore
+        }
+
         const el = document.getElementById('certificates');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }
@@ -171,6 +202,7 @@ const Certificates: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
             {certificatesList.map((certificate, index) => (
               <motion.div
+                id={`certificate-${index}`}
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}

@@ -30,6 +30,7 @@ const Projects: React.FC = () => {
   });
 
   const projects = t('projects.items', { returnObjects: true }) as Array<{
+    id?: string;
     title: string;
     description: string;
     technologies: string[];
@@ -86,6 +87,22 @@ const Projects: React.FC = () => {
     }
   };
 
+  React.useEffect(() => {
+    try {
+      const last = sessionStorage.getItem('lastProject');
+      if (last) {
+        const el = document.getElementById(`project-${last}`);
+        if (el) {
+          // small timeout to allow layout/animations
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+        }
+        sessionStorage.removeItem('lastProject');
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
   return (
     <section id="projects" className="w-full py-20 bg-gradient-to-br from-black to-red-950 overflow-x-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -109,6 +126,7 @@ const Projects: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
             {projects.map((project, index) => (
               <motion.div
+                id={`project-${project.id ?? index}`}
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -118,31 +136,31 @@ const Projects: React.FC = () => {
                 <div className="bg-gray-900 rounded-lg overflow-hidden border border-red-700/30 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20">
                   {/* Project Image */}
                   <div className="relative h-48 bg-gradient-to-br from-red-900 to-red-700 overflow-hidden">
-                    {project.title === "Hoja de vida" ? (
+                    {project.id === 'hoja-de-vida' || project.title === "Hoja de vida" ? (
                       <img 
                         src={HojaDeVida} 
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
-                    ) : project.title === "Formulario" ? (
+                    ) : project.id === 'formulario' || project.title === "Formulario" ? (
                       <img 
                         src={Formulario} 
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
-                    ) : project.title === "Diseño Responsivo" ? (
+                    ) : project.id === 'diseno-responsivo' || project.title === "Diseño Responsivo" || project.title === "Responsive Design" ? (
                       <img 
                         src={DisenoResponsivo} 
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
-                    ) : project.hasHooks ? (
+                    ) : project.hasHooks || project.id === 'hooks' ? (
                       <img 
                         src={HooksImg}
                         alt={project.title}
                         className="w-full h-full object-contain"
                       />
-                    ) : project.title === "Glosario de Programación" || project.title === "Programming Glossary" ? (
+                    ) : project.id === 'glosario' || project.title === "Glosario de Programación" || project.title === "Programming Glossary" ? (
                       <img 
                         src={GlosaryImg} 
                         alt={project.title}
@@ -203,6 +221,9 @@ const Projects: React.FC = () => {
                           href={project.repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            try { sessionStorage.setItem('lastProject', project.id ?? String(index)); } catch { /* ignore */ }
+                          }}
                           className="flex items-center gap-1 px-4 py-2 bg-gray-800 text-white text-sm rounded hover:bg-gray-700 transition-colors"
                         >
                           <Github size={16} className="inline-block" />
@@ -215,6 +236,9 @@ const Projects: React.FC = () => {
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => {
+                            try { sessionStorage.setItem('lastProject', project.id ?? String(index)); } catch { /* ignore */ }
+                          }}
                           className="flex items-center gap-1 px-4 py-2 bg-red-700 text-white text-sm rounded hover:bg-red-600 transition-colors"
                         >
                           <ExternalLink size={16} className="inline-block" />
@@ -222,9 +246,11 @@ const Projects: React.FC = () => {
                         </a>
                       )}
 
+
                       {project.hasGlossary && (
                         <Link
                           to="/glosario"
+                          onClick={() => { try { sessionStorage.setItem('lastProject', project.id ?? String(index)); } catch { /* ignore */ } }}
                           className="flex items-center gap-1 px-4 py-2 bg-green-700 text-white text-sm rounded hover:bg-green-600 transition-colors"
                         >
                           <FileText size={16} className="inline-block" />
@@ -235,6 +261,7 @@ const Projects: React.FC = () => {
                       {project.hasHooks && (
                         <Link
                           to={project.hooksUrl || '/hooks'}
+                          onClick={() => { try { sessionStorage.setItem('lastProject', project.id ?? String(index)); } catch { /* ignore */ } }}
                           className="flex items-center gap-1 px-4 py-2 bg-indigo-700 text-white text-sm rounded hover:bg-indigo-600 transition-colors"
                         >
                           <Search size={16} className="inline-block" />
